@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://eefss4lug353"]
+[gd_scene load_steps=19 format=3 uid="uid://eefss4lug353"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_k3ent"]
 [ext_resource type="FontFile" uid="uid://dv2rs7up6uflh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_eor4y"]
@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="9_2b64d"]
 [ext_resource type="PackedScene" uid="uid://5grr5j6iic8y" path="res://scenes/in_game_ui.tscn" id="10_emnqp"]
 [ext_resource type="PackedScene" uid="uid://b58fwo6mh1cme" path="res://scenes/pause_menu_ui.tscn" id="11_gxdjg"]
+[ext_resource type="PackedScene" uid="uid://bbbctu8te58ey" path="res://scenes/game_over_menu_ui.tscn" id="12_l8xst"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dlp3c"]
 texture = ExtResource("3_yf860")
@@ -258,8 +259,9 @@ limit_bottom = 120
 limit_smoothed = true
 position_smoothing_speed = 10.0
 
-[node name="KillZone" parent="." instance=ExtResource("5_oxrbl")]
+[node name="KillZone" parent="." node_paths=PackedStringArray("gameOverUI") instance=ExtResource("5_oxrbl")]
 position = Vector2(47, 134)
+gameOverUI = NodePath("../UI/GameOverMenuUI")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 shape = SubResource("WorldBoundaryShape2D_o3n2h")
@@ -359,3 +361,5 @@ horizontal_alignment = 1
 [node name="InGameUI" parent="UI" instance=ExtResource("10_emnqp")]
 
 [node name="PauseMenuUI" parent="UI" instance=ExtResource("11_gxdjg")]
+
+[node name="GameOverMenuUI" parent="UI" instance=ExtResource("12_l8xst")]
