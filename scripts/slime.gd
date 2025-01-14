@@ -1,5 +1,7 @@
 extends Node2D
 
+signal player_died
+
 @onready var rightRayCast: RayCast2D = $RayCastRight
 @onready var leftRayCast: RayCast2D = $RayCastLeft
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -18,3 +20,8 @@ func _process(delta: float) -> void:
 		animatedSprite.flip_h = false
 	
 	position.x += movementDirection * SPEED * delta
+
+
+func _on_player_died() -> void:
+	print("Slime - signale emitted")
+	emit_signal("player_died")
