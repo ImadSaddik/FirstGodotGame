@@ -6,10 +6,10 @@
 [ext_resource type="FontFile" uid="uid://dv2rs7up6uflh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_vs8xr"]
 [ext_resource type="PackedScene" uid="uid://siss6ckjm2vk" path="res://scenes/platform.tscn" id="3_i1cck"]
 [ext_resource type="PackedScene" uid="uid://boumtyf7j2epf" path="res://scenes/coin.tscn" id="4_u28ik"]
-[ext_resource type="PackedScene" uid="uid://5grr5j6iic8y" path="res://scenes/coin_counter_ui.tscn" id="5_enfye"]
 [ext_resource type="PackedScene" uid="uid://cihdtppvj80ur" path="res://scenes/kill_zone.tscn" id="5_j2t1f"]
 [ext_resource type="PackedScene" uid="uid://bfnranlc8tjgx" path="res://scenes/slime.tscn" id="6_sghkb"]
 [ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="7_8g8a7"]
+[ext_resource type="PackedScene" uid="uid://5grr5j6iic8y" path="res://scenes/in_game_ui.tscn" id="10_o17fw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a4gyv"]
 texture = ExtResource("1_yovtp")
@@ -220,9 +220,10 @@ _data = {
 [node name="Game" type="Node2D"]
 position = Vector2(0, 1)
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("inGameUI")]
 unique_name_in_owner = true
 script = ExtResource("1_7droo")
+inGameUI = NodePath("../UI/InGameUI")
 
 [node name="ScoreLabel" type="Label" parent="GameManager"]
 offset_left = 490.0
@@ -351,13 +352,8 @@ theme_override_font_sizes/font_size = 8
 text = "Great job!"
 horizontal_alignment = 1
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="Node" parent="."]
 
-[node name="CoinCounterUI" parent="UI" instance=ExtResource("5_enfye")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(0.959999, 0.959999)
-size_flags_horizontal = 0
+[node name="InGameUI" parent="UI" instance=ExtResource("10_o17fw")]
+offset_top = 1.0
+offset_bottom = 1.0
