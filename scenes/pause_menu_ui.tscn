@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://b58fwo6mh1cme"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu_ui.gd" id="1_6bxgu"]
+[ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="1_sqqgp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nvhu"]
+bg_color = Color(0, 0, 0, 0.635294)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r2rff"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wu1t"]
+bg_color = Color(0.851769, 0.851769, 0.851769, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njadl"]
+bg_color = Color(0.601223, 0.601223, 0.601223, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipvb3"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="PauseMenuUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6bxgu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nvhu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -81.0
+offset_right = 160.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_sqqgp")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_r2rff")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0wu1t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_njadl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ipvb3")
+text = "Resume"
+
+[node name="ExitLevelButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_sqqgp")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_r2rff")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0wu1t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_njadl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ipvb3")
+text = "Exit Level"

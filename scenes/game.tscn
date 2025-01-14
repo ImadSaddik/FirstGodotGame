@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://eefss4lug353"]
+[gd_scene load_steps=18 format=3 uid="uid://eefss4lug353"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_7droo"]
 [ext_resource type="PackedScene" uid="uid://cs565u2u1h6la" path="res://scenes/player.tscn" id="1_gg75j"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bfnranlc8tjgx" path="res://scenes/slime.tscn" id="6_sghkb"]
 [ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="7_8g8a7"]
 [ext_resource type="PackedScene" uid="uid://5grr5j6iic8y" path="res://scenes/in_game_ui.tscn" id="10_o17fw"]
+[ext_resource type="PackedScene" uid="uid://b58fwo6mh1cme" path="res://scenes/pause_menu_ui.tscn" id="11_4vu3j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a4gyv"]
 texture = ExtResource("1_yovtp")
@@ -220,10 +221,11 @@ _data = {
 [node name="Game" type="Node2D"]
 position = Vector2(0, 1)
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("inGameUI")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("inGameUI", "pauseMenuUI")]
 unique_name_in_owner = true
 script = ExtResource("1_7droo")
 inGameUI = NodePath("../UI/InGameUI")
+pauseMenuUI = NodePath("../UI/PauseMenuUI")
 
 [node name="ScoreLabel" type="Label" parent="GameManager"]
 offset_left = 490.0
@@ -355,3 +357,5 @@ horizontal_alignment = 1
 [node name="UI" type="Node" parent="."]
 
 [node name="InGameUI" parent="UI" instance=ExtResource("10_o17fw")]
+
+[node name="PauseMenuUI" parent="UI" instance=ExtResource("11_4vu3j")]

@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eq25a")
 coinCounterLabel = NodePath("CanvasLayer/CoinCounter/CoinLabel")
-pauseButton = NodePath("")
+pauseButton = NodePath("CanvasLayer/PauseButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
