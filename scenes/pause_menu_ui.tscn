@@ -17,7 +17,7 @@ bg_color = Color(0.601223, 0.601223, 0.601223, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipvb3"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="PauseMenuUI" type="Control"]
+[node name="PauseMenuUI" type="Control" node_paths=PackedStringArray("canvasLayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,6 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6bxgu")
+canvasLayer = NodePath("CanvasLayer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -81,3 +82,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_0wu1t")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_njadl")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ipvb3")
 text = "Exit Level"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ExitLevelButton" to="." method="_on_exit_level_button_pressed"]
