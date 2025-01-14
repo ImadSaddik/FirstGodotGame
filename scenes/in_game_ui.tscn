@@ -1,47 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://5grr5j6iic8y"]
+[gd_scene load_steps=5 format=3 uid="uid://5grr5j6iic8y"]
 
+[ext_resource type="Script" path="res://scripts/in_game_ui.gd" id="1_eq25a"]
 [ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="2_e604e"]
 [ext_resource type="Texture2D" uid="uid://ccd0txkttks6b" path="res://assets/svg/coin.svg" id="3_p4skr"]
+[ext_resource type="Texture2D" uid="uid://c31x3fsmjp3fq" path="res://assets/svg/pause_button.svg" id="4_0u7mf"]
 
-[sub_resource type="GDScript" id="GDScript_fe6mj"]
-script/source = "extends Control
-
-@onready var gameManager: Node = %GameManager
-@export var coin_counter_label: Label
-
-func update_coin_counter_label(value: int) -> void:
-	print(value)
-	coin_counter_label.text = str(value)
-"
-
-[node name="InGameUI" type="Control" node_paths=PackedStringArray("coin_counter_label")]
+[node name="InGameUI" type="Control" node_paths=PackedStringArray("coinCounterLabel", "pauseButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_fe6mj")
-coin_counter_label = NodePath("CanvasLayer/CoinCounter/CoinLabel")
+script = ExtResource("1_eq25a")
+coinCounterLabel = NodePath("CanvasLayer/CoinCounter/CoinLabel")
+pauseButton = NodePath("")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="CoinCounter" type="ColorRect" parent="CanvasLayer"]
-offset_right = 288.0
-offset_bottom = 98.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 192.0
+offset_bottom = 80.0
+color = Color(1, 1, 1, 0.509804)
 
 [node name="CoinLabel" type="Label" parent="CanvasLayer/CoinCounter"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.0
+offset_left = 100.0
 offset_top = -11.5
-offset_right = 4.0
+offset_right = 168.0
 offset_bottom = 11.5
-grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_e604e")
@@ -61,3 +54,17 @@ offset_bottom = 20.0
 grow_vertical = 2
 texture = ExtResource("3_p4skr")
 expand_mode = 1
+
+[node name="PauseButton" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -55.9999
+offset_top = 16.0
+offset_right = 8.00012
+offset_bottom = 80.0
+grow_horizontal = 0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("4_0u7mf")
+
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_pause_button_pressed"]

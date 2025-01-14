@@ -355,5 +355,3 @@ horizontal_alignment = 1
 [node name="UI" type="Node" parent="."]
 
 [node name="InGameUI" parent="UI" instance=ExtResource("10_o17fw")]
-offset_top = 1.0
-offset_bottom = 1.0
