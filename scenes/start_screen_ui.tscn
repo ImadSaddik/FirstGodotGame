@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7e188lrybryb"]
+[gd_scene load_steps=12 format=3 uid="uid://b7e188lrybryb"]
 
 [ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="1_521am"]
+[ext_resource type="Script" path="res://scripts/start_screen_ui.gd" id="1_elvmy"]
 [ext_resource type="Texture2D" uid="uid://byhorooeabb5o" path="res://assets/sprites/world_tileset.png" id="2_hqqql"]
 [ext_resource type="PackedScene" uid="uid://bfnranlc8tjgx" path="res://scenes/slime.tscn" id="3_4saye"]
 
@@ -192,10 +193,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_elvmy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
-visible = false
 follow_viewport_scale = 4.0
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
@@ -206,7 +207,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ggd0a")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="ButtonsContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -220,7 +221,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="StartGameButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="StartGameButton" type="Button" parent="CanvasLayer/ButtonsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -235,7 +236,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_iyl6u")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75i84")
 text = "Start Game"
 
-[node name="SettingsButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="CanvasLayer/ButtonsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -250,7 +251,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_iyl6u")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75i84")
 text = "Settings"
 
-[node name="ExitGameButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="ExitGameButton" type="Button" parent="CanvasLayer/ButtonsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -298,3 +299,7 @@ position = Vector2(2025, 499)
 rotation = 3.14159
 scale = Vector2(3.5, 3.5)
 isUpsideDown = true
+
+[connection signal="pressed" from="CanvasLayer/ButtonsContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ButtonsContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ButtonsContainer/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
