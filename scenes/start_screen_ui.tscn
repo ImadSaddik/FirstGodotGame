@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7e188lrybryb"]
+[gd_scene load_steps=13 format=3 uid="uid://b7e188lrybryb"]
 
 [ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="1_521am"]
 [ext_resource type="Script" path="res://scripts/start_screen_ui.gd" id="1_elvmy"]
 [ext_resource type="Texture2D" uid="uid://byhorooeabb5o" path="res://assets/sprites/world_tileset.png" id="2_hqqql"]
 [ext_resource type="PackedScene" uid="uid://bfnranlc8tjgx" path="res://scenes/slime.tscn" id="3_4saye"]
+[ext_resource type="Texture2D" uid="uid://ckcq783q0yla6" path="res://assets/svg/return_button.svg" id="3_n3w1f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggd0a"]
 bg_color = Color(0, 0, 0, 0.4)
@@ -185,7 +186,7 @@ texture = ExtResource("2_hqqql")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_xlxgc")
 
-[node name="StartScreenUI" type="Control"]
+[node name="StartScreenUI" type="Control" node_paths=PackedStringArray("settingsView", "startMenuView")]
 layout_direction = 1
 layout_mode = 3
 anchors_preset = 15
@@ -194,12 +195,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_elvmy")
+settingsView = NodePath("CanvasLayer/SettingsView")
+startMenuView = NodePath("CanvasLayer/startMenuView")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 follow_viewport_scale = 4.0
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Background" type="Panel" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -207,7 +210,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ggd0a")
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="startMenuView" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -221,7 +224,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="StartGameButton" type="Button" parent="CanvasLayer/ButtonsContainer"]
+[node name="StartGameButton" type="Button" parent="CanvasLayer/startMenuView"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -236,7 +239,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_iyl6u")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75i84")
 text = "Start Game"
 
-[node name="SettingsButton" type="Button" parent="CanvasLayer/ButtonsContainer"]
+[node name="SettingsButton" type="Button" parent="CanvasLayer/startMenuView"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -251,7 +254,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_iyl6u")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75i84")
 text = "Settings"
 
-[node name="ExitGameButton" type="Button" parent="CanvasLayer/ButtonsContainer"]
+[node name="ExitGameButton" type="Button" parent="CanvasLayer/startMenuView"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -265,6 +268,51 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_xmnbx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_iyl6u")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75i84")
 text = "Exit Game"
+
+[node name="SettingsView" type="Node" parent="CanvasLayer"]
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SettingsView"]
+visible = false
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1172.0
+offset_bottom = 84.0
+size_flags_vertical = 0
+theme_override_constants/separation = 32
+
+[node name="ReturnToStartMenuButton" type="TextureButton" parent="CanvasLayer/SettingsView/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_n3w1f")
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsView/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_521am")
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SettingsView"]
+visible = false
+offset_left = 282.0
+offset_top = 239.0
+offset_right = 870.0
+offset_bottom = 321.0
+size_flags_vertical = 6
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsView/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_521am")
+theme_override_font_sizes/font_size = 24
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/SettingsView/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(40, 31)
@@ -300,6 +348,7 @@ rotation = 3.14159
 scale = Vector2(3.5, 3.5)
 isUpsideDown = true
 
-[connection signal="pressed" from="CanvasLayer/ButtonsContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/ButtonsContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/ButtonsContainer/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/startMenuView/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/startMenuView/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/startMenuView/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsView/HBoxContainer/ReturnToStartMenuButton" to="." method="_on_return_to_start_menu_button_pressed"]
