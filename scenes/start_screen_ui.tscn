@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ckcq783q0yla6" path="res://assets/svg/return_button.svg" id="3_n3w1f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggd0a"]
-bg_color = Color(0, 0, 0, 0.4)
+bg_color = Color(0, 0, 0, 0.517647)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dfyc"]
 
@@ -195,6 +195,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_elvmy")
+music_bus_name = "Music"
+sound_effects_bus_name = "SoundEffects"
 settingsView = NodePath("CanvasLayer/SettingsView")
 startMenuView = NodePath("CanvasLayer/startMenuView")
 
@@ -269,16 +271,25 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_iyl6u")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75i84")
 text = "Exit Game"
 
-[node name="SettingsView" type="Node" parent="CanvasLayer"]
-metadata/_edit_use_anchors_ = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SettingsView"]
+[node name="SettingsView" type="VBoxContainer" parent="CanvasLayer"]
 visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 1172.0
-offset_bottom = 84.0
-size_flags_vertical = 0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SettingsView"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 32
 
 [node name="ReturnToStartMenuButton" type="TextureButton" parent="CanvasLayer/SettingsView/HBoxContainer"]
@@ -295,24 +306,44 @@ text = "Settings"
 vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SettingsView"]
-visible = false
-offset_left = 282.0
-offset_top = 239.0
-offset_right = 870.0
-offset_bottom = 321.0
+layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 6
-theme_override_constants/separation = 16
+theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="CanvasLayer/SettingsView/VBoxContainer"]
+[node name="Music" type="VBoxContainer" parent="CanvasLayer/SettingsView/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsView/VBoxContainer/Music"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_521am")
 theme_override_font_sizes/font_size = 24
 text = "Music Volume"
 
-[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/SettingsView/VBoxContainer"]
+[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/SettingsView/VBoxContainer/Music"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 3
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="SoundEffects" type="VBoxContainer" parent="CanvasLayer/SettingsView/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/SettingsView/VBoxContainer/SoundEffects"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_521am")
+theme_override_font_sizes/font_size = 24
+text = "Sound Effects Volume"
+
+[node name="SoundEffectsVolumeSlider" type="HSlider" parent="CanvasLayer/SettingsView/VBoxContainer/SoundEffects"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(40, 31)
@@ -352,3 +383,5 @@ isUpsideDown = true
 [connection signal="pressed" from="CanvasLayer/startMenuView/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/startMenuView/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/SettingsView/HBoxContainer/ReturnToStartMenuButton" to="." method="_on_return_to_start_menu_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsView/VBoxContainer/Music/MusicVolumeSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsView/VBoxContainer/SoundEffects/SoundEffectsVolumeSlider" to="." method="_on_sound_effects_slider_value_changed"]
