@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bhumyp21hajes" path="res://assets/sprites/knight.png" id="1_eh0pk"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_qgvji"]
 [ext_resource type="AudioStream" uid="uid://ikbk3yulxcvq" path="res://assets/sounds/jump.wav" id="3_rtyys"]
-[ext_resource type="AudioStream" uid="uid://yad6k7hlna7w" path="res://assets/sounds/hurt.wav" id="4_cr8s2"]
+[ext_resource type="AudioStream" uid="uid://8646qdn4cmpo" path="res://assets/sounds/game_over.mp3" id="4_qpni2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_addvw"]
 atlas = ExtResource("1_eh0pk")
@@ -173,12 +173,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_sfjnd"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpSoundEffect", "deathSoundEffect")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpSoundEffect", "deathSoundEffect", "timer")]
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_qgvji")
 jumpSoundEffect = NodePath("JumpSound")
 deathSoundEffect = NodePath("DeathSound")
+timer = NodePath("Timer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
@@ -195,5 +196,11 @@ stream = ExtResource("3_rtyys")
 bus = &"SoundEffects"
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_cr8s2")
+stream = ExtResource("4_qpni2")
 bus = &"SoundEffects"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
