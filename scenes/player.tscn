@@ -197,6 +197,7 @@ bus = &"SoundEffects"
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_qpni2")
+volume_db = 5.0
 bus = &"SoundEffects"
 
 [node name="Timer" type="Timer" parent="."]
