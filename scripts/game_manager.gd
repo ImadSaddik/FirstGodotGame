@@ -4,7 +4,8 @@ extends Node
 @export var inGameUI: Control
 @export var pauseMenuUI: Control
 @export var gameOverMenuUI: Control
-@onready var slime: Node2D = $"../Enemies/Slime"
+@export var slime: Node2D
+@export var player: Node2D
 
 var score: int = 0
 
@@ -20,5 +21,5 @@ func show_pause_menu() -> void:
 
 
 func _on_player_died() -> void:
-	print("Game manager - Signale received")
+	player.play_death_sound()
 	gameOverMenuUI.show_game_over_menu()

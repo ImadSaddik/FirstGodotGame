@@ -222,12 +222,14 @@ _data = {
 [node name="Level 1" type="Node2D"]
 position = Vector2(0, 1)
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("inGameUI", "pauseMenuUI", "gameOverMenuUI")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("inGameUI", "pauseMenuUI", "gameOverMenuUI", "slime", "player")]
 unique_name_in_owner = true
 script = ExtResource("1_k3ent")
 inGameUI = NodePath("../UI/InGameUI")
 pauseMenuUI = NodePath("../UI/PauseMenuUI")
 gameOverMenuUI = NodePath("../UI/GameOverMenuUI")
+slime = NodePath("../Enemies/Slime")
+player = NodePath("../Player")
 
 [node name="ScoreLabel" type="Label" parent="GameManager"]
 offset_left = 490.0

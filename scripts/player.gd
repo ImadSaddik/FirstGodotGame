@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @export var jumpSoundEffect: AudioStreamPlayer2D
+@export var deathSoundEffect: AudioStreamPlayer2D
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
@@ -41,3 +42,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+	
+func play_death_sound() -> void:
+	deathSoundEffect.play()
