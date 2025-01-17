@@ -29,3 +29,4 @@ func _on_player_died() -> void:
 func _on_player_won() -> void:
 	var canvasLayer: CanvasLayer = winMenuUI.get_child(0, true)
 	canvasLayer.show()
+	player.canMove = false
