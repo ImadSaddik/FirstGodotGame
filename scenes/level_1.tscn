@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://eefss4lug353"]
+[gd_scene load_steps=22 format=3 uid="uid://eefss4lug353"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_k3ent"]
 [ext_resource type="FontFile" uid="uid://dv2rs7up6uflh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_eor4y"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b58fwo6mh1cme" path="res://scenes/pause_menu_ui.tscn" id="11_gxdjg"]
 [ext_resource type="PackedScene" uid="uid://bbbctu8te58ey" path="res://scenes/game_over_menu_ui.tscn" id="12_l8xst"]
 [ext_resource type="PackedScene" uid="uid://cdtbn0fibfpus" path="res://scenes/win_zone.tscn" id="13_ks6jb"]
+[ext_resource type="PackedScene" uid="uid://chu6gljri5xu3" path="res://scenes/win_menu_ui.tscn" id="14_w5wdo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dlp3c"]
 texture = ExtResource("3_yf860")
@@ -226,11 +227,12 @@ _data = {
 [node name="Level 1" type="Node2D"]
 position = Vector2(0, 1)
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("inGameUI", "pauseMenuUI", "gameOverMenuUI", "slime", "player")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("inGameUI", "pauseMenuUI", "winMenuUI", "gameOverMenuUI", "slime", "player")]
 unique_name_in_owner = true
 script = ExtResource("1_k3ent")
 inGameUI = NodePath("../UI/InGameUI")
 pauseMenuUI = NodePath("../UI/PauseMenuUI")
+winMenuUI = NodePath("../UI/WinMenuUI")
 gameOverMenuUI = NodePath("../UI/GameOverMenuUI")
 slime = NodePath("../Enemies/Slime")
 player = NodePath("../Player")
@@ -378,5 +380,8 @@ horizontal_alignment = 1
 
 [node name="GameOverMenuUI" parent="UI" instance=ExtResource("12_l8xst")]
 
+[node name="WinMenuUI" parent="UI" instance=ExtResource("14_w5wdo")]
+
 [connection signal="player_died" from="KillZone" to="GameManager" method="_on_player_died"]
+[connection signal="player_won" from="WinZone" to="GameManager" method="_on_player_won"]
 [connection signal="player_died" from="Enemies/Slime" to="GameManager" method="_on_player_died"]

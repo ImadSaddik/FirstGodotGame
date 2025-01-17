@@ -3,6 +3,7 @@ extends Node
 @onready var scoreLabel: Label = $ScoreLabel
 @export var inGameUI: Control
 @export var pauseMenuUI: Control
+@export var winMenuUI: Control
 @export var gameOverMenuUI: Control
 @export var slime: Node2D
 @export var player: Node2D
@@ -23,3 +24,8 @@ func show_pause_menu() -> void:
 func _on_player_died() -> void:
 	player.play_death_sound()
 	gameOverMenuUI.show_game_over_menu()
+
+
+func _on_player_won() -> void:
+	var canvasLayer: CanvasLayer = winMenuUI.get_child(0, true)
+	canvasLayer.show()
