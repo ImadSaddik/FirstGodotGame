@@ -27,6 +27,10 @@ func _on_player_died() -> void:
 
 
 func _on_player_won() -> void:
+	player.canMove = false
+	
+	const maxNumberOfStars: int = 8
+	winMenuUI.update_stars_based_on_score(score, maxNumberOfStars)
+	
 	var canvasLayer: CanvasLayer = winMenuUI.get_child(0, true)
 	canvasLayer.show()
-	player.canMove = false
