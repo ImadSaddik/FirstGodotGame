@@ -8,6 +8,7 @@ enum StarRating {
 }
 
 @export var starsImageContainer: TextureRect
+@export var currentLevel: int
 
 const STARS_TEXTURES = {
 	StarRating.NONE: preload("res://assets/svg/empty_stars_level_end.svg"),
@@ -16,12 +17,18 @@ const STARS_TEXTURES = {
 	StarRating.THREE_STARS: preload("res://assets/svg/all_stars_filled_level_end.svg")
 }
 
+const LEVELS_SCENES = {
+	"1": "res://scenes/level_1.tscn",
+	"2": "res://scenes/level_2.tscn",
+	"3": "res://scenes/level_3.tscn",
+}
+
 func _on_main_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/start_screen_ui.tscn")
 
 
 func _on_next_level_button_pressed() -> void:
-	pass # TODO: Change this after adding other levels
+	get_tree().change_scene_to_file(LEVELS_SCENES[str(currentLevel+1)])
 
 
 func update_stars_based_on_score(collectedStars: int, maxNumberOfStars: int) -> void:
