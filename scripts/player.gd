@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
-@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+@export var playerAnimatedSprite: AnimatedSprite2D
 @export var jumpSoundEffect: AudioStreamPlayer2D
 @export var deathSoundEffect: AudioStreamPlayer2D
+@export var sword: Node2D
 @export var timer: Timer
 
 const SPEED = 130.0
@@ -31,31 +32,35 @@ func _physics_process(delta: float) -> void:
 		var vertical_direction = Input.get_axis("move_up", "move_down")
 		(vertical_direction)
 		velocity.y = vertical_direction * CLIMB_SPEED
-		animatedSprite.play("climb")
+		playerAnimatedSprite.play("climb")
 
 	# Handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		canDoubleJump = true
 		velocity.y = JUMP_VELOCITY
 		jumpSoundEffect.play()
+		
+	# Hundle hit action
+	if Input.is_action_just_pressed("hit"):
+		sword.swing_sword()
 
 	# Get the input direction, it can be either -1, 0, 1.
 	var direction := Input.get_axis("move_left", "move_right")
 	
 	# Flip the sprite
 	if direction < 0:
-		animatedSprite.flip_h = true
+		playerAnimatedSprite.flip_h = true
 	elif direction > 0:
-		animatedSprite.flip_h = false
+		playerAnimatedSprite.flip_h = false
 		
 	# Play animations
 	if is_on_floor():
 		if direction == 0:
-			animatedSprite.play("idle")
+			playerAnimatedSprite.play("idle")
 		else:
-			animatedSprite.play("run")
+			playerAnimatedSprite.play("run")
 	else:
-		animatedSprite.play("jump")
+		playerAnimatedSprite.play("jump")
 	
 	# Move the player
 	if direction:
