@@ -6,9 +6,10 @@ extends CharacterBody2D
 @export var sword: Node2D
 @export var timer: Timer
 
-const SPEED = 130.0
-const JUMP_VELOCITY = -300.0
-const CLIMB_SPEED = 100.0
+const SPEED: float = 130.0
+const JUMP_VELOCITY: float = -300.0
+const CLIMB_SPEED: float = 100.0
+const SWORD_X_OFFSET_IN_PIXELS: float = 5.5
 
 var canMove: bool = true
 var isOnLadder: bool = false
@@ -50,8 +51,10 @@ func _physics_process(delta: float) -> void:
 	# Flip the sprite
 	if direction < 0:
 		playerAnimatedSprite.flip_h = true
+		sword.set_x_position(-SWORD_X_OFFSET_IN_PIXELS)
 	elif direction > 0:
 		playerAnimatedSprite.flip_h = false
+		sword.set_x_position(SWORD_X_OFFSET_IN_PIXELS)
 		
 	# Play animations
 	if is_on_floor():

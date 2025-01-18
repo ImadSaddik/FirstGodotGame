@@ -9,7 +9,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,7 +21,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:visible")
+tracks/1/path = NodePath("Sprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -36,7 +36,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -48,7 +48,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:visible")
+tracks/1/path = NodePath("Sprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -64,16 +64,17 @@ _data = {
 "swing_sword": SubResource("Animation_857rj")
 }
 
-[node name="Sword" type="Node2D" node_paths=PackedStringArray("swordAnimationPlayer")]
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("swordAnimationPlayer", "animatedSprite")]
 script = ExtResource("1_4d2fg")
-swordAnimationPlayer = NodePath("AnimatedSprite2D/AnimationPlayer")
+swordAnimationPlayer = NodePath("Sprite2D/AnimationPlayer")
+animatedSprite = NodePath("Sprite2D")
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("1_hui56")
 hframes = 8
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_40ibo")
