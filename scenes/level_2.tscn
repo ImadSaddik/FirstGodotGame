@@ -268,7 +268,7 @@ size = Vector2(48, 8)
 [node name="Level 2" type="Node2D"]
 position = Vector2(0, 1)
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("scoreLabel", "inGameUI", "pauseMenuUI", "winMenuUI", "gameOverMenuUI", "slime", "player")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("scoreLabel", "inGameUI", "pauseMenuUI", "winMenuUI", "gameOverMenuUI", "player")]
 unique_name_in_owner = true
 script = ExtResource("1_okdgc")
 scoreLabel = NodePath("../Texts/ScoreLabel")
@@ -276,7 +276,6 @@ inGameUI = NodePath("../UI/InGameUI")
 pauseMenuUI = NodePath("../UI/PauseMenuUI")
 winMenuUI = NodePath("../UI/WinMenuUI")
 gameOverMenuUI = NodePath("../UI/GameOverMenuUI")
-slime = NodePath("")
 player = NodePath("../Player")
 
 [node name="TileMap" type="TileMap" parent="."]

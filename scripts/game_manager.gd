@@ -22,6 +22,7 @@ func show_pause_menu() -> void:
 
 
 func _on_player_died() -> void:
+	player.canMove = false
 	player.play_death_sound()
 	gameOverMenuUI.show_game_over_menu()
 
