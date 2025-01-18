@@ -11,6 +11,7 @@ const CLIMB_SPEED = 100.0
 
 var canMove: bool = true
 var isOnLadder: bool = false
+var canDoubleJump: bool = true
 
 func _physics_process(delta: float) -> void:
 	if not canMove:
@@ -19,6 +20,11 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor() and not isOnLadder:
 		velocity += get_gravity() * delta
+		# Handle double jump
+		if Input.is_action_just_pressed("jump") and canDoubleJump:
+			canDoubleJump = false
+			velocity.y = JUMP_VELOCITY
+			jumpSoundEffect.play()
 		
 	# Handle ladder climbing
 	if isOnLadder:
@@ -27,8 +33,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y = vertical_direction * CLIMB_SPEED
 		animatedSprite.play("climb")
 
-	# Handle jump.
+	# Handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		canDoubleJump = true
 		velocity.y = JUMP_VELOCITY
 		jumpSoundEffect.play()
 
