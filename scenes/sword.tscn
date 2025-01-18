@@ -1,7 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2phwtovjgf20"]
+[gd_scene load_steps=7 format=3 uid="uid://d2phwtovjgf20"]
 
 [ext_resource type="Script" path="res://scripts/sword.gd" id="1_4d2fg"]
 [ext_resource type="Texture2D" uid="uid://b435ij81fe1kf" path="res://assets/sprites/sword_swing.png" id="1_hui56"]
+
+[sub_resource type="Animation" id="Animation_p8sme"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_857rj"]
 resource_name = "swing_sword"
@@ -30,32 +69,17 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true, false]
 }
-
-[sub_resource type="Animation" id="Animation_p8sme"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_40ibo"]
@@ -64,9 +88,12 @@ _data = {
 "swing_sword": SubResource("Animation_857rj")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6xmm"]
+size = Vector2(14, 19)
+
 [node name="Sword" type="Node2D" node_paths=PackedStringArray("swordAnimationPlayer", "animatedSprite")]
 script = ExtResource("1_4d2fg")
-swordAnimationPlayer = NodePath("Sprite2D/AnimationPlayer")
+swordAnimationPlayer = NodePath("AnimationPlayer")
 animatedSprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -74,8 +101,18 @@ visible = false
 texture = ExtResource("1_hui56")
 hframes = 8
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
-root_node = NodePath("../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_40ibo")
 }
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_s6xmm")
+disabled = true
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

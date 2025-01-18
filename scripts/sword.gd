@@ -14,3 +14,9 @@ func set_x_position(value: float) -> void:
 		animatedSprite.flip_h = true
 	else:
 		animatedSprite.flip_h = false
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	if area.name == "HurtBox":
+		var enemy = area.get_parent()
+		enemy.queue_free()
