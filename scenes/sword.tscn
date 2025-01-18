@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2phwtovjgf20"]
+[gd_scene load_steps=8 format=3 uid="uid://d2phwtovjgf20"]
 
 [ext_resource type="Script" path="res://scripts/sword.gd" id="1_4d2fg"]
 [ext_resource type="Texture2D" uid="uid://b435ij81fe1kf" path="res://assets/sprites/sword_swing.png" id="1_hui56"]
+[ext_resource type="AudioStream" uid="uid://c1kyom66esgju" path="res://assets/sounds/sword_swing.mp3" id="3_svojo"]
 
 [sub_resource type="Animation" id="Animation_p8sme"]
 length = 0.001
@@ -91,10 +92,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6xmm"]
 size = Vector2(14, 19)
 
-[node name="Sword" type="Node2D" node_paths=PackedStringArray("swordAnimationPlayer", "animatedSprite")]
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("swordAnimationPlayer", "swordSoundEffect", "animatedSprite", "timer")]
 script = ExtResource("1_4d2fg")
 swordAnimationPlayer = NodePath("AnimationPlayer")
+swordSoundEffect = NodePath("swingSound")
 animatedSprite = NodePath("Sprite2D")
+timer = NodePath("Timer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -115,4 +118,12 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_s6xmm")
 disabled = true
 
+[node name="swingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_svojo")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

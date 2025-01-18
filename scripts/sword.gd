@@ -1,11 +1,14 @@
 extends Node2D
 
 @export var swordAnimationPlayer: AnimationPlayer
+@export var swordSoundEffect: AudioStreamPlayer2D
 @export var animatedSprite: Sprite2D
+@export var timer: Timer
 
 
 func swing_sword() -> void:
 	swordAnimationPlayer.play("swing_sword")
+	swordSoundEffect.play()
 
 
 func set_x_position(value: float) -> void:

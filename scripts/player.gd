@@ -11,12 +11,12 @@ const JUMP_VELOCITY: float = -300.0
 const CLIMB_SPEED: float = 100.0
 const SWORD_X_OFFSET_IN_PIXELS: float = 5.5
 
-var canMove: bool = true
+var canMakeAction: bool = true
 var isOnLadder: bool = false
 var canDoubleJump: bool = true
 
 func _physics_process(delta: float) -> void:
-	if not canMove:
+	if not canMakeAction:
 		return
 
 	# Add the gravity.

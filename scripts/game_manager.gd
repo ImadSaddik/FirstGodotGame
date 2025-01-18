@@ -10,6 +10,7 @@ extends Node
 
 var score: int = 0
 
+
 func add_point():
 	score += 1
 	scoreLabel.text = "You collected " + str(score) + " coins."
@@ -22,13 +23,14 @@ func show_pause_menu() -> void:
 
 
 func _on_player_died() -> void:
-	player.canMove = false
+	print("Player died")
+	player.canMakeAction = false
 	player.play_death_sound()
 	gameOverMenuUI.show_game_over_menu()
 
 
 func _on_player_won() -> void:
-	player.canMove = false
+	player.canMakeAction = false
 	
 	const maxNumberOfStars: int = 8
 	winMenuUI.update_stars_based_on_score(score, maxNumberOfStars)
