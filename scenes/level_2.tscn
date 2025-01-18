@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://b1cwbq25ew16t"]
+[gd_scene load_steps=27 format=3 uid="uid://b1cwbq25ew16t"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_okdgc"]
 [ext_resource type="FontFile" uid="uid://dv2rs7up6uflh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_77xk4"]
 [ext_resource type="Texture2D" uid="uid://byhorooeabb5o" path="res://assets/sprites/world_tileset.png" id="3_mjvju"]
 [ext_resource type="PackedScene" uid="uid://cs565u2u1h6la" path="res://scenes/player.tscn" id="4_7c6ot"]
+[ext_resource type="PackedScene" uid="uid://57yquoe7ecdv" path="res://scenes/ladder.tscn" id="5_53kmy"]
 [ext_resource type="PackedScene" uid="uid://cihdtppvj80ur" path="res://scenes/kill_zone.tscn" id="5_xy8k1"]
 [ext_resource type="PackedScene" uid="uid://cdtbn0fibfpus" path="res://scenes/win_zone.tscn" id="6_slw1q"]
 [ext_resource type="PackedScene" uid="uid://boumtyf7j2epf" path="res://scenes/coin.tscn" id="7_36gyf"]
@@ -184,6 +185,9 @@ sources/0 = SubResource("TileSetAtlasSource_dlp3c")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_walu8"]
 size = Vector2(63.5, 6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1sov"]
+size = Vector2(14, 65)
+
 [sub_resource type="Animation" id="Animation_3an3v"]
 length = 1.5
 loop_mode = 2
@@ -302,6 +306,12 @@ position = Vector2(713, -260)
 position = Vector2(39.0001, -26.25)
 rotation = -1.57079
 shape = SubResource("RectangleShape2D_walu8")
+
+[node name="Ladder" parent="." instance=ExtResource("5_53kmy")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder"]
+position = Vector2(536, 96.5)
+shape = SubResource("RectangleShape2D_n1sov")
 
 [node name="Coins" type="Node" parent="."]
 
