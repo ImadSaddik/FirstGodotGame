@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	if leftRayCast.is_colliding():
 		movementDirection = -1 if isUpsideDown else 1
 		animatedSprite.flip_h = false
-	
+
 	position.x += movementDirection * SPEED * delta
 
 

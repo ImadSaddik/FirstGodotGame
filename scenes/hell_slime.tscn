@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhdcm8lltqcrp"]
+[gd_scene load_steps=11 format=3 uid="uid://dhdcm8lltqcrp"]
 
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_4p62s"]
 [ext_resource type="Texture2D" uid="uid://cufxdhty26uox" path="res://assets/sprites/slime_hell.png" id="2_dh25r"]
@@ -41,7 +41,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbs8b"]
-size = Vector2(14, 13)
+size = Vector2(14, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gaga0"]
+size = Vector2(20, 17)
 
 [node name="HellSlime" type="Node2D"]
 script = ExtResource("1_4p62s")
@@ -54,12 +57,6 @@ autoplay = "idle"
 frame = 2
 frame_progress = 0.819449
 
-[node name="KillZone" parent="." instance=ExtResource("3_8vwwd")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(0, -6.5)
-shape = SubResource("RectangleShape2D_sbs8b")
-
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(0, -6)
 target_position = Vector2(13, 0)
@@ -67,5 +64,20 @@ target_position = Vector2(13, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(0, -6)
 target_position = Vector2(-13, 0)
+
+[node name="KillZone" parent="." instance=ExtResource("3_8vwwd")]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_sbs8b")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_gaga0")
 
 [connection signal="player_died" from="KillZone" to="." method="_on_player_died"]
