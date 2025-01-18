@@ -18,6 +18,7 @@ pauseButton = NodePath("CanvasLayer/HBoxContainer/PauseButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
+visible = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 10

@@ -227,29 +227,16 @@ _data = {
 [node name="Level 1" type="Node2D"]
 position = Vector2(0, 1)
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("inGameUI", "pauseMenuUI", "winMenuUI", "gameOverMenuUI", "slime", "player")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("scoreLabel", "inGameUI", "pauseMenuUI", "winMenuUI", "gameOverMenuUI", "slime", "player")]
 unique_name_in_owner = true
 script = ExtResource("1_k3ent")
+scoreLabel = NodePath("../Texts/ScoreLabel")
 inGameUI = NodePath("../UI/InGameUI")
 pauseMenuUI = NodePath("../UI/PauseMenuUI")
 winMenuUI = NodePath("../UI/WinMenuUI")
 gameOverMenuUI = NodePath("../UI/GameOverMenuUI")
 slime = NodePath("../Enemies/Slime")
 player = NodePath("../Player")
-
-[node name="ScoreLabel" type="Label" parent="GameManager"]
-offset_left = 490.0
-offset_top = -162.0
-offset_right = 593.0
-offset_bottom = -143.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.0980392, 0.313726, 0.752941, 1)
-theme_override_fonts/font = ExtResource("2_eor4y")
-theme_override_font_sizes/font_size = 8
-text = "You collected X coins."
-horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_8t8mo")
@@ -371,6 +358,20 @@ theme_override_fonts/font = ExtResource("9_2b64d")
 theme_override_font_sizes/font_size = 8
 text = "Great job!"
 horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Texts"]
+offset_left = 490.0
+offset_top = -162.0
+offset_right = 593.0
+offset_bottom = -143.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.0980392, 0.313726, 0.752941, 1)
+theme_override_fonts/font = ExtResource("2_eor4y")
+theme_override_font_sizes/font_size = 8
+text = "You collected X coins."
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="UI" type="Node" parent="."]
 

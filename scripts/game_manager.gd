@@ -1,6 +1,6 @@
 extends Node
 
-@onready var scoreLabel: Label = $ScoreLabel
+@export var scoreLabel: Label
 @export var inGameUI: Control
 @export var pauseMenuUI: Control
 @export var winMenuUI: Control
