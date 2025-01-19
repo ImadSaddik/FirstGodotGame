@@ -2,10 +2,10 @@ extends Node2D
 
 signal player_died
 
-@onready var rightRayCast: RayCast2D = $RayCastRight
-@onready var leftRayCast: RayCast2D = $RayCastLeft
-@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
-
+@export var rightRayCast: RayCast2D
+@export var leftRayCast: RayCast2D
+@export var animatedSprite: AnimatedSprite2D
+@export var animationPlayer: AnimationPlayer
 @export var isUpsideDown: bool = false
 
 const SPEED: int = 60
@@ -24,3 +24,7 @@ func _process(delta: float) -> void:
 
 func _on_player_died() -> void:
 	emit_signal("player_died")
+	
+	
+func play_explosion_animation() -> void:
+	animationPlayer.play("explode")
