@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://8p8jdk1hlhmi"]
+
+[ext_resource type="Texture2D" uid="uid://dhvdk0fpdifdv" path="res://assets/sprites/slime_ball.png" id="1_0n513"]
+[ext_resource type="Script" path="res://scripts/slime_ball.gd" id="1_2ls0b"]
+[ext_resource type="PackedScene" uid="uid://cihdtppvj80ur" path="res://scenes/kill_zone.tscn" id="3_8gx1a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7qvtn"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hahd6"]
+radius = 3.0
+
+[node name="SlimeBall" type="RigidBody2D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_2ls0b")
+timer = NodePath("Timer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_0n513")
+
+[node name="KillZone" parent="." instance=ExtResource("3_8gx1a")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+shape = SubResource("CircleShape2D_7qvtn")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hahd6")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
