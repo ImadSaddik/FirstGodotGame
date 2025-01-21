@@ -11,13 +11,14 @@ const JUMP_VELOCITY: float = -300.0
 const CLIMB_SPEED: float = 100.0
 const SWORD_X_OFFSET_IN_PIXELS: float = 5.5
 
-var canMakeAction: bool = true
+var isDead: bool = false
+var isLevelCompleted: bool = false
 var isOnLadder: bool = false
 var canDoubleJump: bool = true
 var jumpsPerformed: int = 0
 
 func _physics_process(delta: float) -> void:
-	if not canMakeAction:
+	if isDead or isLevelCompleted:
 		return
 	
 	if is_on_floor():

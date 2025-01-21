@@ -24,13 +24,13 @@ func show_pause_menu() -> void:
 
 func _on_player_died() -> void:
 	print("Player died")
-	player.canMakeAction = false
+	player.isDead = true
 	player.play_death_sound()
 	gameOverMenuUI.show_game_over_menu()
 
 
 func _on_player_won() -> void:
-	player.canMakeAction = false
+	player.isLevelCompleted = true
 	
 	const maxNumberOfStars: int = 8
 	winMenuUI.update_stars_based_on_score(score, maxNumberOfStars)
