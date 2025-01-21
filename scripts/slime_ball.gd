@@ -10,5 +10,4 @@ func _on_timer_timeout() -> void:
 
 
 func _on_player_died() -> void:
-	print("SLIME BALL - Player died")
 	emit_signal("player_died")
