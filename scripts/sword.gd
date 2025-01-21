@@ -24,3 +24,4 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		print("Enemy died")
 		var enemy = area.get_parent()
 		enemy.play_explosion_animation()
+		enemy.stop_shooting_balls()
