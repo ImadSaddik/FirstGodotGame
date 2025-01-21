@@ -86,7 +86,6 @@ func calculate_projectile_speed(angle: float, distanceToPlayer: float) -> float:
 
 
 func _on_player_died() -> void:
-	print("SLIME - Player died")
 	emit_signal("player_died")
 	
 	
