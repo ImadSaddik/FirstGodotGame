@@ -10,6 +10,7 @@ signal player_died
 @export var detectionRadius: float = 100.0
 @export var slimeBallScene: PackedScene
 @export var shootBallTimer: Timer
+@export var slapSoundEffect: AudioStreamPlayer2D
 
 @onready var player: CharacterBody2D = %Player
 
@@ -103,6 +104,10 @@ func _on_player_died() -> void:
 	
 func play_explosion_animation() -> void:
 	animationPlayer.play("explode")
+
+
+func play_death_sound_effect() -> void:
+	slapSoundEffect.play()
 
 
 func stop_shooting_balls() -> void:

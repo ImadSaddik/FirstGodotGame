@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dhdcm8lltqcrp"]
+[gd_scene load_steps=20 format=3 uid="uid://dhdcm8lltqcrp"]
 
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_4p62s"]
 [ext_resource type="Texture2D" uid="uid://cufxdhty26uox" path="res://assets/sprites/slime_hell.png" id="2_dh25r"]
 [ext_resource type="PackedScene" uid="uid://cihdtppvj80ur" path="res://scenes/kill_zone.tscn" id="3_8vwwd"]
+[ext_resource type="AudioStream" uid="uid://rkfs7aulkpff" path="res://assets/sounds/slap_enemy.mp3" id="4_rnwq4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h1b20"]
 atlas = ExtResource("2_dh25r")
@@ -176,13 +177,14 @@ _data = {
 "explode": SubResource("Animation_bayfq")
 }
 
-[node name="HellSlime" type="Node2D" node_paths=PackedStringArray("rightRayCast", "leftRayCast", "animatedSprite", "animationPlayer", "shootBallTimer")]
+[node name="HellSlime" type="Node2D" node_paths=PackedStringArray("rightRayCast", "leftRayCast", "animatedSprite", "animationPlayer", "shootBallTimer", "slapSoundEffect")]
 script = ExtResource("1_4p62s")
 rightRayCast = NodePath("RayCastRight")
 leftRayCast = NodePath("RayCastLeft")
 animatedSprite = NodePath("AnimatedSprite2D")
 animationPlayer = NodePath("AnimationPlayer")
 shootBallTimer = NodePath("ShootBallTimer")
+slapSoundEffect = NodePath("slapSound")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
@@ -231,6 +233,10 @@ libraries = {
 [node name="ShootBallTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="slapSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_rnwq4")
+bus = &"SoundEffects"
 
 [connection signal="player_died" from="KillZone" to="." method="_on_player_died"]
 [connection signal="timeout" from="ShootBallTimer" to="." method="_on_shoot_ball_timer_timeout"]
