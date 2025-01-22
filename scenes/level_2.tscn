@@ -424,6 +424,10 @@ position = Vector2(847, -132)
 position = Vector2(265, 32)
 slimeBallScene = ExtResource("9_3irey")
 
+[node name="HellSlime7" parent="Enemies" instance=ExtResource("8_ktl8p")]
+position = Vector2(27, 32)
+slimeBallScene = ExtResource("9_3irey")
+
 [node name="HellSlime2" parent="Enemies" instance=ExtResource("8_ktl8p")]
 position = Vector2(440, 128)
 slimeBallScene = ExtResource("9_3irey")
@@ -488,6 +492,7 @@ shape = SubResource("RectangleShape2D_4734t")
 
 [connection signal="player_won" from="WinZone" to="GameManager" method="_on_player_won"]
 [connection signal="player_died" from="Enemies/HellSlime" to="GameManager" method="_on_player_died"]
+[connection signal="player_died" from="Enemies/HellSlime7" to="GameManager" method="_on_player_died"]
 [connection signal="player_died" from="Enemies/HellSlime2" to="GameManager" method="_on_player_died"]
 [connection signal="player_died" from="Enemies/HellSlime3" to="GameManager" method="_on_player_died"]
 [connection signal="player_died" from="Enemies/HellSlime4" to="GameManager" method="_on_player_died"]

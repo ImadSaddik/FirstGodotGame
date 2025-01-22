@@ -14,9 +14,9 @@ signal player_died
 @onready var player: CharacterBody2D = %Player
 
 const SLIME_SPEED: int = 60
-const MAX_PROJECTILE_HEIGHT: float = 30.0
 const GRAVITY: float = 980.0
 const PROJECTILE_SHOT_ANGLE: float = 45.0
+const OFFSET_SLIME_BALL_FROM_GROUND: float = 10.0
 
 var movementDirection = 1
 var canShoot: bool = true
@@ -34,7 +34,7 @@ func move_slime(delta: float) -> void:
 		movementDirection = -1 if isUpsideDown else 1
 		animatedSprite.flip_h = false
 	
-	position.x += movementDirection * SLIME_SPEED * delta
+	#position.x += movementDirection * SLIME_SPEED * delta
 
 
 func shoot_ball() -> void:
@@ -52,37 +52,49 @@ func shoot_ball() -> void:
 func shoot_at_player() -> void:
 	if not slimeBallScene:
 		return
-		
+	
 	canShoot = false
 	var slimeBall = spawn_slime_ball()
-	
+	var velocity = calculate_projectile_velocity(player.position)
+	slimeBall.linear_velocity = velocity
+
+
+func calculate_projectile_velocity(targetPosition: Vector2) -> Vector2:
 	var angleInRadians = deg_to_rad(PROJECTILE_SHOT_ANGLE)
-	var distanceToPlayer = position.distance_to(player.position)
-	var projectileSpeed = calculate_projectile_speed(angleInRadians, distanceToPlayer)
-	
+	var horizontalDistance = abs(targetPosition.x - position.x)
+	var projectileSpeed = calculate_projectile_speed(angleInRadians, horizontalDistance)
+
 	var initialVelocityX = projectileSpeed * cos(angleInRadians)
-	var initialVelocityY = projectileSpeed * sin(angleInRadians)
+	var timeToTarget = horizontalDistance / initialVelocityX
 	
-	var target_pos = player.position
-	if target_pos.x < position.x:
+	# Calculate required vertical velocity considering height difference
+	# Read this brilliant openstax section for more details: https://openstax.org/books/university-physics-volume-1/pages/4-3-projectile-motion
+	# The formula used here is derived from the kinematic equation: y = y0 + v0y*t + 0.5*a*t^2
+	# Solve for v0y, you get: v0y = (y - y0 + 0.5*a*t^2) / t
+	var heightDifference = targetPosition.y - position.y
+	var initialVelocityY = (-heightDifference + 0.5 * GRAVITY * timeToTarget * timeToTarget) / timeToTarget
+	
+	# If the player is on the left side of the slime, shoot the ball to the left
+	if targetPosition.x < position.x:
 		initialVelocityX = -initialVelocityX
 	
-	slimeBall.linear_velocity = Vector2(initialVelocityX, -initialVelocityY)
-	
-	
-func spawn_slime_ball() -> RigidBody2D:
-	var slimeBall = slimeBallScene.instantiate()
-	get_parent().add_child(slimeBall)
-	slimeBall.position = position
-	slimeBall.connect("player_died", _on_player_died)
-	return slimeBall
-	
+	return Vector2(initialVelocityX, -initialVelocityY)
+
 
 func calculate_projectile_speed(angle: float, distanceToPlayer: float) -> float:
 	var numerator = distanceToPlayer * GRAVITY
 	var denominator = sin(2*angle)
 	var projectileSpeed = sqrt(float(numerator) / denominator)
 	return projectileSpeed
+
+
+func spawn_slime_ball() -> RigidBody2D:
+	var slimeBall = slimeBallScene.instantiate()
+	get_parent().add_child(slimeBall)
+	slimeBall.position = position
+	slimeBall.position.y -= OFFSET_SLIME_BALL_FROM_GROUND
+	slimeBall.connect("player_died", _on_player_died)
+	return slimeBall
 
 
 func _on_player_died() -> void:
