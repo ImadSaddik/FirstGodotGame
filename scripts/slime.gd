@@ -34,7 +34,7 @@ func move_slime(delta: float) -> void:
 		movementDirection = -1 if isUpsideDown else 1
 		animatedSprite.flip_h = false
 	
-	#position.x += movementDirection * SLIME_SPEED * delta
+	position.x += movementDirection * SLIME_SPEED * delta
 
 
 func shoot_ball() -> void:
