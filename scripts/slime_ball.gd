@@ -2,11 +2,8 @@ extends RigidBody2D
 
 signal player_died
 
-@export var timer: Timer
-
-
-func _on_timer_timeout() -> void:
-	queue_free()
+@export var animationTimer: Timer
+@export var explosionAnimation: AnimationPlayer
 
 
 func _on_player_died() -> void:
@@ -18,4 +15,13 @@ func _on_area_entered(area: Area2D) -> void:
 
 
 func _on_ball_hit_ground() -> void:
+	explosionAnimation.play("explosion")
+	animationTimer.start()
+
+
+func _on_animation_duration_timeout() -> void:
+	queue_free()
+
+
+func _on_spawn_rate_timeout() -> void:
 	queue_free()
