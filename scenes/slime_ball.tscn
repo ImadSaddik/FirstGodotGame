@@ -176,7 +176,7 @@ texture = ExtResource("1_0n513")
 
 [node name="KillZone" parent="." instance=ExtResource("3_8gx1a")]
 collision_layer = 32
-collision_mask = 16
+collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 shape = SubResource("CircleShape2D_7qvtn")
@@ -204,7 +204,6 @@ libraries = {
 "": SubResource("AnimationLibrary_4uva5")
 }
 
-[connection signal="area_entered" from="KillZone" to="." method="_on_area_entered"]
 [connection signal="ball_hit_ground" from="KillZone" to="." method="_on_ball_hit_ground"]
 [connection signal="player_died" from="KillZone" to="." method="_on_player_died"]
 [connection signal="timeout" from="SpawnRateTimer" to="." method="_on_spawn_rate_timeout"]
