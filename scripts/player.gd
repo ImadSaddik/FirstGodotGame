@@ -12,6 +12,7 @@ const CLIMB_SPEED: float = 100.0
 const SWORD_X_OFFSET_IN_PIXELS: float = 5.5
 
 var isDead: bool = false
+var isOnPlatform: bool = false
 var isLevelCompleted: bool = false
 var isOnLadder: bool = false
 var canDoubleJump: bool = true
@@ -114,3 +115,11 @@ func play_animations(direction: float) -> void:
 
 func _on_timer_timeout() -> void:
 	deathSoundEffect.play()
+
+
+func _on_player_on_platform() -> void:
+	isOnPlatform = true
+
+
+func _on_player_exited_platform() -> void:
+	isOnPlatform = false
