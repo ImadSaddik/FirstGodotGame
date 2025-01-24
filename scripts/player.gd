@@ -74,7 +74,6 @@ func handle_double_jump() -> void:
 func handle_ladder_climbing() -> void:
 	var vertical_direction = Input.get_axis("move_up", "move_down")
 	velocity.y = vertical_direction * CLIMB_SPEED
-	playerAnimatedSprite.play("climb")
 
 
 func handle_actions() -> void:

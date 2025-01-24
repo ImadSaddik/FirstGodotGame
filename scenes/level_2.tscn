@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cihdtppvj80ur" path="res://scenes/kill_zone.tscn" id="5_xy8k1"]
 [ext_resource type="PackedScene" uid="uid://cdtbn0fibfpus" path="res://scenes/win_zone.tscn" id="6_slw1q"]
 [ext_resource type="PackedScene" uid="uid://boumtyf7j2epf" path="res://scenes/coin.tscn" id="7_36gyf"]
-[ext_resource type="PackedScene" uid="uid://dhdcm8lltqcrp" path="res://scenes/hell_slime.tscn" id="8_ktl8p"]
+[ext_resource type="PackedScene" uid="uid://dhdcm8lltqcrp" path="res://scenes/slime.tscn" id="8_ktl8p"]
 [ext_resource type="PackedScene" uid="uid://siss6ckjm2vk" path="res://scenes/platform.tscn" id="8_xen6l"]
 [ext_resource type="PackedScene" uid="uid://8p8jdk1hlhmi" path="res://scenes/slime_ball.tscn" id="9_3irey"]
 [ext_resource type="PackedScene" uid="uid://5grr5j6iic8y" path="res://scenes/in_game_ui.tscn" id="11_7vuyq"]
@@ -423,26 +423,32 @@ position = Vector2(847, -132)
 [node name="HellSlime" parent="Enemies" instance=ExtResource("8_ktl8p")]
 position = Vector2(265, 32)
 slimeBallScene = ExtResource("9_3irey")
+slime_type = 1
 
 [node name="HellSlime2" parent="Enemies" instance=ExtResource("8_ktl8p")]
 position = Vector2(440, 128)
 slimeBallScene = ExtResource("9_3irey")
+slime_type = 1
 
 [node name="HellSlime3" parent="Enemies" instance=ExtResource("8_ktl8p")]
 position = Vector2(891, 160)
 slimeBallScene = ExtResource("9_3irey")
+slime_type = 1
 
 [node name="HellSlime4" parent="Enemies" instance=ExtResource("8_ktl8p")]
 position = Vector2(1015, 160)
 slimeBallScene = ExtResource("9_3irey")
+slime_type = 1
 
 [node name="HellSlime5" parent="Enemies" instance=ExtResource("8_ktl8p")]
 position = Vector2(1193, 80)
 slimeBallScene = ExtResource("9_3irey")
+slime_type = 1
 
 [node name="HellSlime6" parent="Enemies" instance=ExtResource("8_ktl8p")]
 position = Vector2(761, -80)
 slimeBallScene = ExtResource("9_3irey")
+slime_type = 1
 
 [node name="Texts" type="Node" parent="."]
 

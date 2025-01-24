@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://eefss4lug353"]
+[gd_scene load_steps=23 format=3 uid="uid://eefss4lug353"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_k3ent"]
 [ext_resource type="FontFile" uid="uid://dv2rs7up6uflh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_eor4y"]
@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cihdtppvj80ur" path="res://scenes/kill_zone.tscn" id="5_oxrbl"]
 [ext_resource type="PackedScene" uid="uid://boumtyf7j2epf" path="res://scenes/coin.tscn" id="6_gww3b"]
 [ext_resource type="PackedScene" uid="uid://siss6ckjm2vk" path="res://scenes/platform.tscn" id="7_f44s0"]
-[ext_resource type="PackedScene" uid="uid://bfnranlc8tjgx" path="res://scenes/slime.tscn" id="8_0d8tt"]
+[ext_resource type="PackedScene" uid="uid://dhdcm8lltqcrp" path="res://scenes/slime.tscn" id="8_0d8tt"]
 [ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="9_2b64d"]
+[ext_resource type="PackedScene" uid="uid://8p8jdk1hlhmi" path="res://scenes/slime_ball.tscn" id="9_s7x1g"]
 [ext_resource type="PackedScene" uid="uid://5grr5j6iic8y" path="res://scenes/in_game_ui.tscn" id="10_emnqp"]
 [ext_resource type="PackedScene" uid="uid://b58fwo6mh1cme" path="res://scenes/pause_menu_ui.tscn" id="11_gxdjg"]
 [ext_resource type="PackedScene" uid="uid://bbbctu8te58ey" path="res://scenes/game_over_menu_ui.tscn" id="12_l8xst"]
@@ -313,6 +314,7 @@ autoplay = "move"
 
 [node name="Slime" parent="Enemies" instance=ExtResource("8_0d8tt")]
 position = Vector2(537, 65)
+slimeBallScene = ExtResource("9_s7x1g")
 
 [node name="Texts" type="Node" parent="."]
 

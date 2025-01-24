@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7e188lrybryb"]
+[gd_scene load_steps=14 format=3 uid="uid://b7e188lrybryb"]
 
 [ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="1_521am"]
 [ext_resource type="Script" path="res://scripts/start_screen_ui.gd" id="1_elvmy"]
 [ext_resource type="Texture2D" uid="uid://byhorooeabb5o" path="res://assets/sprites/world_tileset.png" id="2_hqqql"]
-[ext_resource type="PackedScene" uid="uid://bfnranlc8tjgx" path="res://scenes/slime.tscn" id="3_4saye"]
+[ext_resource type="PackedScene" uid="uid://dhdcm8lltqcrp" path="res://scenes/slime.tscn" id="3_4saye"]
 [ext_resource type="Texture2D" uid="uid://ckcq783q0yla6" path="res://assets/svg/return_button.svg" id="3_n3w1f"]
+[ext_resource type="PackedScene" uid="uid://8p8jdk1hlhmi" path="res://scenes/slime_ball.tscn" id="6_b41ph"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggd0a"]
 bg_color = Color(0, 0, 0, 0.517647)
@@ -360,24 +361,31 @@ layer_1/tile_data = PackedInt32Array(524287, 0, 0, 589823, 0, 1, 393216, 0, 0, 4
 [node name="Slime" parent="Enemies" instance=ExtResource("3_4saye")]
 position = Vector2(174, 437)
 scale = Vector2(3.5, 3.5)
+slimeBallScene = ExtResource("6_b41ph")
 
 [node name="Slime2" parent="Enemies" instance=ExtResource("3_4saye")]
 position = Vector2(1454, 601)
 rotation = 3.14159
 scale = Vector2(3.5, 3.5)
 isUpsideDown = true
+slimeBallScene = ExtResource("6_b41ph")
+slime_type = 2
 
 [node name="Slime3" parent="Enemies" instance=ExtResource("3_4saye")]
 position = Vector2(1658, 242)
 rotation = 3.14159
 scale = Vector2(3.5, 3.5)
 isUpsideDown = true
+slimeBallScene = ExtResource("6_b41ph")
+slime_type = 2
 
 [node name="Slime4" parent="Enemies" instance=ExtResource("3_4saye")]
 position = Vector2(2025, 499)
 rotation = 3.14159
 scale = Vector2(3.5, 3.5)
 isUpsideDown = true
+slimeBallScene = ExtResource("6_b41ph")
+slime_type = 2
 
 [connection signal="pressed" from="CanvasLayer/startMenuView/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/startMenuView/SettingsButton" to="." method="_on_settings_button_pressed"]

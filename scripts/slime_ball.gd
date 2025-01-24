@@ -7,7 +7,6 @@ signal player_died
 
 
 func _on_player_died() -> void:
-	print("Player died")
 	emit_signal("player_died")
 
 

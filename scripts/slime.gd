@@ -12,6 +12,9 @@ signal player_died
 @export var shootBallTimer: Timer
 @export var slapSoundEffect: AudioStreamPlayer2D
 
+enum SlimeType {NORMAL, FIRE, ICE}
+@export_enum("Normal", "Fire", "Ice") var slime_type: int = SlimeType.NORMAL
+
 @onready var player: CharacterBody2D = %Player
 
 const SLIME_SPEED: int = 60
@@ -22,9 +25,24 @@ const OFFSET_SLIME_BALL_FROM_GROUND: float = 10.0
 var movementDirection = 1
 var canShoot: bool = true
 
+
+func _ready() -> void:
+	play_idle_animation()
+
+
 func _process(delta: float) -> void:
 	move_slime(delta)
 	shoot_ball()
+	
+	
+func play_idle_animation() -> void:
+	match slime_type:
+		SlimeType.NORMAL:
+			animatedSprite.play("idle")
+		SlimeType.FIRE:
+			animatedSprite.play("idle_fire")
+		SlimeType.ICE:
+			animatedSprite.play("idle_ice")
 
 
 func move_slime(delta: float) -> void:
