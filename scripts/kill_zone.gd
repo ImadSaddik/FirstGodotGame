@@ -1,6 +1,8 @@
 extends Area2D
 
+@warning_ignore("unused_signal")
 signal player_died
+@warning_ignore("unused_signal")
 signal ball_hit_ground
 
 func _on_body_entered(body: Node2D) -> void:

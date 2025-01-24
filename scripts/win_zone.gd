@@ -1,5 +1,6 @@
 extends Area2D
 
+@warning_ignore("unused_signal")
 signal player_won
 
 @export var levelWonSoundEffect: AudioStreamPlayer2D
