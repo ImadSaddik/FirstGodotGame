@@ -125,6 +125,6 @@ func _on_player_on_platform(collisionShape: CollisionShape2D) -> void:
 	platformCollisionShape = collisionShape
 
 
-func _on_player_exited_platform(collisionShape: CollisionShape2D) -> void:
+func _on_player_exited_platform(_collisionShape: CollisionShape2D) -> void:
 	isOnPlatform = false
 	platformCollisionShape = null

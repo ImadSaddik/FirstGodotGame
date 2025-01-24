@@ -5,7 +5,7 @@ signal player_won
 @export var levelWonSoundEffect: AudioStreamPlayer2D
 @onready var timer: Timer = $Timer
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	timer.start()
 
 
