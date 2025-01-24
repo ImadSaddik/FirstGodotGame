@@ -11,11 +11,10 @@ signal player_died
 @export var slimeBallScene: PackedScene
 @export var shootBallTimer: Timer
 @export var slapSoundEffect: AudioStreamPlayer2D
+@export var player: CharacterBody2D
 
 enum SlimeType {NORMAL, FIRE, ICE}
 @export_enum("Normal", "Fire", "Ice") var slime_type: int = SlimeType.NORMAL
-
-@onready var player: CharacterBody2D = %Player
 
 const SLIME_SPEED: int = 60
 const GRAVITY: float = 980.0

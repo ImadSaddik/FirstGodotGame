@@ -420,34 +420,40 @@ position = Vector2(847, -132)
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="HellSlime" parent="Enemies" instance=ExtResource("8_ktl8p")]
+[node name="HellSlime" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_ktl8p")]
 position = Vector2(265, 32)
 slimeBallScene = ExtResource("9_3irey")
+player = NodePath("../../Player")
 slime_type = 1
 
-[node name="HellSlime2" parent="Enemies" instance=ExtResource("8_ktl8p")]
+[node name="HellSlime2" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_ktl8p")]
 position = Vector2(440, 128)
 slimeBallScene = ExtResource("9_3irey")
+player = NodePath("../../Player")
 slime_type = 1
 
-[node name="HellSlime3" parent="Enemies" instance=ExtResource("8_ktl8p")]
+[node name="HellSlime3" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_ktl8p")]
 position = Vector2(891, 160)
 slimeBallScene = ExtResource("9_3irey")
+player = NodePath("../../Player")
 slime_type = 1
 
-[node name="HellSlime4" parent="Enemies" instance=ExtResource("8_ktl8p")]
+[node name="HellSlime4" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_ktl8p")]
 position = Vector2(1015, 160)
 slimeBallScene = ExtResource("9_3irey")
+player = NodePath("../../Player")
 slime_type = 1
 
-[node name="HellSlime5" parent="Enemies" instance=ExtResource("8_ktl8p")]
+[node name="HellSlime5" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_ktl8p")]
 position = Vector2(1193, 80)
 slimeBallScene = ExtResource("9_3irey")
+player = NodePath("../../Player")
 slime_type = 1
 
-[node name="HellSlime6" parent="Enemies" instance=ExtResource("8_ktl8p")]
+[node name="HellSlime6" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_ktl8p")]
 position = Vector2(761, -80)
 slimeBallScene = ExtResource("9_3irey")
+player = NodePath("../../Player")
 slime_type = 1
 
 [node name="Texts" type="Node" parent="."]

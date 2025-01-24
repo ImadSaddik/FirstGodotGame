@@ -312,9 +312,10 @@ autoplay = "move"
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Slime" parent="Enemies" instance=ExtResource("8_0d8tt")]
+[node name="Slime" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_0d8tt")]
 position = Vector2(537, 65)
 slimeBallScene = ExtResource("9_s7x1g")
+player = NodePath("../../Player")
 
 [node name="Texts" type="Node" parent="."]
 
