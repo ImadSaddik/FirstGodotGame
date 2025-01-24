@@ -17,6 +17,7 @@ var isLevelCompleted: bool = false
 var isOnLadder: bool = false
 var canDoubleJump: bool = true
 var jumpsPerformed: int = 0
+var platformCollisionShape: CollisionShape2D = null
 
 func _physics_process(delta: float) -> void:
 	if isDead or isLevelCompleted:
@@ -80,6 +81,9 @@ func handle_actions() -> void:
 	if Input.is_action_just_pressed("hit"):
 		sword.swing_sword()
 	
+	if Input.is_action_just_pressed("move_down") and isOnPlatform:
+		platformCollisionShape.disabled = true
+	
 	# Get the input direction, it can be either -1, 0, 1.
 	var direction := Input.get_axis("move_left", "move_right")
 	flip_player_based_on_direction(direction)
@@ -117,9 +121,11 @@ func _on_timer_timeout() -> void:
 	deathSoundEffect.play()
 
 
-func _on_player_on_platform() -> void:
+func _on_player_on_platform(collisionShape: CollisionShape2D) -> void:
 	isOnPlatform = true
+	platformCollisionShape = collisionShape
 
 
-func _on_player_exited_platform() -> void:
+func _on_player_exited_platform(collisionShape: CollisionShape2D) -> void:
 	isOnPlatform = false
+	platformCollisionShape = null

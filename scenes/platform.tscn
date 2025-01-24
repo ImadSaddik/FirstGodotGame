@@ -9,8 +9,9 @@ size = Vector2(32, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1i5h"]
 size = Vector2(32, 4)
 
-[node name="Platform" type="AnimatableBody2D"]
+[node name="Platform" type="AnimatableBody2D" node_paths=PackedStringArray("platformCollisionShape")]
 script = ExtResource("1_cu5qg")
+platformCollisionShape = NodePath("PlatformCollisionShape")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_kfm6r")
