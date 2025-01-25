@@ -255,7 +255,7 @@ layer_1/tile_data = PackedInt32Array(196600, 458752, 1, 196602, 458752, 0, 19660
 
 [node name="Player" parent="." instance=ExtResource("3_e1tto")]
 unique_name_in_owner = true
-position = Vector2(-172, 19)
+position = Vector2(-220, 29)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)

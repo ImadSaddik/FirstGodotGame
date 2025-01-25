@@ -7,6 +7,7 @@ enum StarRating {
 	THREE_STARS
 }
 
+@export var nextLevelButton: Button
 @export var starsImageContainer: TextureRect
 @export var currentLevel: int
 
@@ -42,3 +43,7 @@ func update_stars_based_on_score(collectedStars: int, maxNumberOfStars: int) -> 
 		rating = StarRating.ONE_STAR
 		
 	starsImageContainer.texture = STARS_TEXTURES[rating]
+	
+
+func hide_next_level_button() -> void:
+	nextLevelButton.hide()

@@ -18,7 +18,7 @@ bg_color = Color(0.601223, 0.601223, 0.601223, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipvb3"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="WinMenuUI" type="Control" node_paths=PackedStringArray("starsImageContainer")]
+[node name="WinMenuUI" type="Control" node_paths=PackedStringArray("nextLevelButton", "starsImageContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5kj4s")
+nextLevelButton = NodePath("CanvasLayer/VBoxContainer/NextLevelButton")
 starsImageContainer = NodePath("CanvasLayer/stars")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
