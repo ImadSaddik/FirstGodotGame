@@ -386,10 +386,27 @@ offset_right = 390.0
 offset_bottom = -799.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.0980392, 0.313726, 0.752941, 1)
+theme_override_colors/font_color = Color(0.901961, 0.372549, 0.411765, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.603922)
 theme_override_fonts/font = ExtResource("10_jrb6h")
 theme_override_font_sizes/font_size = 8
 text = "You collected X coins."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="GoodLuck" type="Label" parent="Texts"]
+offset_left = -161.0
+offset_top = -42.0
+offset_right = -43.0
+offset_bottom = -23.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.0784314, 0.596078, 0.862745, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.603922)
+theme_override_fonts/font = ExtResource("10_jrb6h")
+theme_override_font_sizes/font_size = 8
+text = "Good luck
+You will need it!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
