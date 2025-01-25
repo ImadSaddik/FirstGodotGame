@@ -7,6 +7,7 @@ extends Node
 @export var gameOverMenuUI: Control
 @export var slime: Node2D
 @export var player: Node2D
+@export var maxNumberOfStars: int
 
 var score: int = 0
 
@@ -31,8 +32,11 @@ func _on_player_died() -> void:
 func _on_player_won() -> void:
 	player.isLevelCompleted = true
 	
-	const maxNumberOfStars: int = 8
 	winMenuUI.update_stars_based_on_score(score, maxNumberOfStars)
 	
 	var canvasLayer: CanvasLayer = winMenuUI.get_child(0, true)
 	canvasLayer.show()
+
+
+func _on_invert_gravity() -> void:
+	player.invert_gravity()

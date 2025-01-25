@@ -321,6 +321,7 @@ pauseMenuUI = NodePath("../UI/PauseMenuUI")
 winMenuUI = NodePath("../UI/WinMenuUI")
 gameOverMenuUI = NodePath("../UI/GameOverMenuUI")
 player = NodePath("../Player")
+maxNumberOfStars = 8
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_8t8mo")

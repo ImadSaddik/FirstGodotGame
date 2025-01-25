@@ -18,12 +18,13 @@ var isOnLadder: bool = false
 var canDoubleJump: bool = true
 var jumpsPerformed: int = 0
 var platformCollisionShape: CollisionShape2D = null
+var isGravityInverted: bool = false
 
 func _physics_process(delta: float) -> void:
 	if isDead or isLevelCompleted:
 		return
 	
-	if is_on_floor():
+	if is_on_floor() or is_on_ceiling():
 		reset_double_jumps()
 		handle_jump()
 	
@@ -36,7 +37,7 @@ func _physics_process(delta: float) -> void:
 		
 	handle_actions()
 	move_and_slide()
-
+	
 
 func play_death_sound() -> void:
 	timer.start()
@@ -50,16 +51,17 @@ func reset_double_jumps() -> void:
 func handle_jump() -> void:
 	if Input.is_action_just_pressed("jump"):
 		jumpsPerformed += 1
-		velocity.y = JUMP_VELOCITY
+		velocity.y = -JUMP_VELOCITY if isGravityInverted else JUMP_VELOCITY
 		jumpSoundEffect.play()
 
 
 func is_in_air() -> bool:
-	return not is_on_floor() and not isOnLadder
+	return not is_on_floor() and not is_on_ceiling() and not isOnLadder
 
 
 func apply_gravity(delta: float) -> void:
-	velocity += get_gravity() * delta
+	var gravity = -get_gravity() if isGravityInverted else get_gravity()
+	velocity += gravity * delta
 
 
 func handle_double_jump() -> void:
@@ -114,6 +116,11 @@ func play_animations(direction: float) -> void:
 			playerAnimatedSprite.play("run")
 	else:
 		playerAnimatedSprite.play("jump")
+
+
+func invert_gravity() -> void:
+	isGravityInverted = true
+	scale.y = -1 if isGravityInverted else 1
 
 
 func _on_timer_timeout() -> void:
