@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() or is_on_ceiling():
 		reset_double_jumps()
 		handle_jump()
-	
+		
 	if is_in_air():
 		apply_gravity(delta)
 		handle_double_jump()
@@ -56,7 +56,10 @@ func handle_jump() -> void:
 
 
 func is_in_air() -> bool:
-	return not is_on_floor() and not is_on_ceiling() and not isOnLadder
+	if isGravityInverted:
+		return not is_on_ceiling() and not isOnLadder
+	else:
+		return not is_on_floor() and not isOnLadder
 
 
 func apply_gravity(delta: float) -> void:
