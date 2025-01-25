@@ -109,7 +109,7 @@ func move_player_in_direction(direction: float) -> void:
 
 
 func play_animations(direction: float) -> void:
-	if is_on_floor():
+	if is_on_floor() or is_on_ceiling():
 		if direction == 0:
 			playerAnimatedSprite.play("idle")
 		else:
