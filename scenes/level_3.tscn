@@ -414,6 +414,22 @@ You will need it!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="WhatIsJappening" type="Label" parent="Texts"]
+offset_left = 841.0
+offset_top = -265.0
+offset_right = 959.0
+offset_bottom = -230.0
+rotation = 3.14159
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.901961, 0.372549, 0.411765, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.603922)
+theme_override_fonts/font = ExtResource("10_jrb6h")
+theme_override_font_sizes/font_size = 16
+text = "What is happening ?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="UI" type="Node" parent="."]
 
 [node name="InGameUI" parent="UI" instance=ExtResource("11_txtn5")]
