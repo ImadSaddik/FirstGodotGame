@@ -1,11 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://b7e188lrybryb"]
+[gd_scene load_steps=19 format=3 uid="uid://b7e188lrybryb"]
 
 [ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="1_521am"]
 [ext_resource type="Script" path="res://scripts/start_screen_ui.gd" id="1_elvmy"]
 [ext_resource type="Texture2D" uid="uid://byhorooeabb5o" path="res://assets/sprites/world_tileset.png" id="2_hqqql"]
 [ext_resource type="PackedScene" uid="uid://dhdcm8lltqcrp" path="res://scenes/slime.tscn" id="3_4saye"]
 [ext_resource type="Texture2D" uid="uid://ckcq783q0yla6" path="res://assets/svg/return_button.svg" id="3_n3w1f"]
+[ext_resource type="Texture2D" uid="uid://oetnecl5inqw" path="res://assets/level_covers/level_1_cover.png" id="4_3rcwx"]
+[ext_resource type="Texture2D" uid="uid://53tb2kvubbsl" path="res://assets/button_states/level_cover_click.png" id="5_rnv3v"]
+[ext_resource type="Texture2D" uid="uid://g13exg2rd8fu" path="res://assets/level_covers/level_2_cover.png" id="5_w623u"]
+[ext_resource type="Texture2D" uid="uid://do3dxxsheewgf" path="res://assets/level_covers/level_3_cover.png" id="6_0d0qb"]
 [ext_resource type="PackedScene" uid="uid://8p8jdk1hlhmi" path="res://scenes/slime_ball.tscn" id="6_b41ph"]
+[ext_resource type="Texture2D" uid="uid://bvvq2fd0nvblw" path="res://assets/button_states/level_cover_hover.png" id="6_snrnw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggd0a"]
 bg_color = Color(0, 0, 0, 0.517647)
@@ -187,7 +192,7 @@ texture = ExtResource("2_hqqql")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_xlxgc")
 
-[node name="StartScreenUI" type="Control" node_paths=PackedStringArray("settingsView", "startMenuView")]
+[node name="StartScreenUI" type="Control" node_paths=PackedStringArray("settingsView", "levelsView", "startMenuView")]
 layout_direction = 1
 layout_mode = 3
 anchors_preset = 15
@@ -199,6 +204,7 @@ script = ExtResource("1_elvmy")
 music_bus_name = "Music"
 sound_effects_bus_name = "SoundEffects"
 settingsView = NodePath("CanvasLayer/SettingsView")
+levelsView = NodePath("CanvasLayer/LevelsView")
 startMenuView = NodePath("CanvasLayer/startMenuView")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -295,6 +301,7 @@ theme_override_constants/separation = 32
 
 [node name="ReturnToStartMenuButton" type="TextureButton" parent="CanvasLayer/SettingsView/HBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_n3w1f")
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsView/HBoxContainer"]
@@ -346,6 +353,137 @@ max_value = 1.0
 step = 0.001
 value = 1.0
 
+[node name="LevelsView" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/LevelsView"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 32
+
+[node name="ReturnToStartMenuButton" type="TextureButton" parent="CanvasLayer/LevelsView/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_n3w1f")
+
+[node name="Label" type="Label" parent="CanvasLayer/LevelsView/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_521am")
+theme_override_font_sizes/font_size = 32
+text = "Levels"
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/LevelsView"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/separation = 64
+
+[node name="Level1" type="VBoxContainer" parent="CanvasLayer/LevelsView/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="CanvasLayer/LevelsView/VBoxContainer/Level1"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_521am")
+theme_override_font_sizes/font_size = 24
+text = "Level 1"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/LevelsView/VBoxContainer/Level1"]
+clip_contents = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("4_3rcwx")
+expand_mode = 3
+
+[node name="Level1Button" type="TextureButton" parent="CanvasLayer/LevelsView/VBoxContainer/Level1/TextureRect"]
+z_index = 5
+clip_contents = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_right = 203.0
+offset_bottom = 128.0
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+texture_pressed = ExtResource("5_rnv3v")
+texture_hover = ExtResource("6_snrnw")
+
+[node name="Level2" type="VBoxContainer" parent="CanvasLayer/LevelsView/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label2" type="Label" parent="CanvasLayer/LevelsView/VBoxContainer/Level2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_521am")
+theme_override_font_sizes/font_size = 24
+text = "Level 2"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/LevelsView/VBoxContainer/Level2"]
+clip_contents = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("5_w623u")
+expand_mode = 3
+
+[node name="Level2Button" type="TextureButton" parent="CanvasLayer/LevelsView/VBoxContainer/Level2/TextureRect"]
+z_index = 5
+clip_contents = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_right = 203.0
+offset_bottom = 128.0
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+texture_pressed = ExtResource("5_rnv3v")
+texture_hover = ExtResource("6_snrnw")
+
+[node name="Level3" type="VBoxContainer" parent="CanvasLayer/LevelsView/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label2" type="Label" parent="CanvasLayer/LevelsView/VBoxContainer/Level3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_521am")
+theme_override_font_sizes/font_size = 24
+text = "Level 3"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/LevelsView/VBoxContainer/Level3"]
+clip_contents = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("6_0d0qb")
+expand_mode = 3
+
+[node name="Level3Button" type="TextureButton" parent="CanvasLayer/LevelsView/VBoxContainer/Level3/TextureRect"]
+z_index = 5
+clip_contents = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_right = 203.0
+offset_bottom = 128.0
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+texture_pressed = ExtResource("5_rnv3v")
+texture_hover = ExtResource("6_snrnw")
+
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(40, 31)
 scale = Vector2(3.21, 3.21)
@@ -393,3 +531,7 @@ slime_type = 2
 [connection signal="pressed" from="CanvasLayer/SettingsView/HBoxContainer/ReturnToStartMenuButton" to="." method="_on_return_to_start_menu_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/SettingsView/VBoxContainer/Music/MusicVolumeSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/SettingsView/VBoxContainer/SoundEffects/SoundEffectsVolumeSlider" to="." method="_on_sound_effects_slider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/LevelsView/HBoxContainer/ReturnToStartMenuButton" to="." method="_on_return_to_start_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LevelsView/VBoxContainer/Level1/TextureRect/Level1Button" to="." method="_on_start_level_1_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LevelsView/VBoxContainer/Level2/TextureRect/Level2Button" to="." method="_on_start_level_2_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LevelsView/VBoxContainer/Level3/TextureRect/Level3Button" to="." method="_on_start_level_3_button_pressed"]
