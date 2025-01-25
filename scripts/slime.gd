@@ -11,6 +11,7 @@ signal player_died
 @export var detectionRadius: float = 100.0
 @export var slimeBallScene: PackedScene
 @export var shootBallTimer: Timer
+@export var explosionTimer: Timer
 @export var slapSoundEffect: AudioStreamPlayer2D
 @export var player: CharacterBody2D
 
@@ -135,3 +136,11 @@ func stop_shooting_balls() -> void:
 
 func _on_shoot_ball_timer_timeout() -> void:
 	canShoot = true
+
+
+func remove_from_game() -> void:
+	explosionTimer.start()
+
+
+func _on_explosion_timer_timeout() -> void:
+	queue_free()
