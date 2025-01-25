@@ -391,4 +391,8 @@ currentLevel = 1
 
 [connection signal="player_died" from="KillZone" to="GameManager" method="_on_player_died"]
 [connection signal="player_won" from="WinZone" to="GameManager" method="_on_player_won"]
+[connection signal="player_exited_platform" from="Platforms/Platform" to="Player" method="_on_player_exited_platform"]
+[connection signal="player_on_platform" from="Platforms/Platform" to="Player" method="_on_player_on_platform"]
+[connection signal="player_exited_platform" from="Platforms/Platform2" to="Player" method="_on_player_exited_platform"]
+[connection signal="player_on_platform" from="Platforms/Platform2" to="Player" method="_on_player_on_platform"]
 [connection signal="player_died" from="Enemies/Slime" to="GameManager" method="_on_player_died"]
