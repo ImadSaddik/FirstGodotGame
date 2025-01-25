@@ -8,6 +8,7 @@ extends Node
 @export var slime: Node2D
 @export var player: Node2D
 @export var maxNumberOfStars: int
+@export var currentLevel: int
 
 var score: int = 0
 
@@ -33,7 +34,9 @@ func _on_player_won() -> void:
 	player.isLevelCompleted = true
 	
 	winMenuUI.update_stars_based_on_score(score, maxNumberOfStars)
-	winMenuUI.hide_next_level_button()
+	
+	if currentLevel == 3:
+		winMenuUI.hide_next_level_button()
 	
 	var canvasLayer: CanvasLayer = winMenuUI.get_child(0, true)
 	canvasLayer.show()

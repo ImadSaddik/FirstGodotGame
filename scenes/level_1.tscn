@@ -239,6 +239,7 @@ gameOverMenuUI = NodePath("../UI/GameOverMenuUI")
 slime = NodePath("../Enemies/Slime")
 player = NodePath("../Player")
 maxNumberOfStars = 8
+currentLevel = 1
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_8t8mo")
