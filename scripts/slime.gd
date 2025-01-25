@@ -58,10 +58,7 @@ func move_slime(delta: float) -> void:
 
 
 func shoot_ball() -> void:
-	if not player or not canShoot:
-		return
-		
-	if player.isDead:
+	if not player or player.isDead or not canShoot:
 		return
 	
 	var distanceToPlayer = position.distance_to(player.position)
