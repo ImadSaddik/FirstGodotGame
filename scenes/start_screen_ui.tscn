@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b7e188lrybryb"]
+[gd_scene load_steps=21 format=3 uid="uid://b7e188lrybryb"]
 
 [ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="1_521am"]
 [ext_resource type="Script" path="res://scripts/start_screen_ui.gd" id="1_elvmy"]
@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://dhdcm8lltqcrp" path="res://scenes/slime.tscn" id="3_4saye"]
 [ext_resource type="Texture2D" uid="uid://ckcq783q0yla6" path="res://assets/svg/return_button.svg" id="3_n3w1f"]
 [ext_resource type="Texture2D" uid="uid://oetnecl5inqw" path="res://assets/level_covers/level_1_cover.png" id="4_3rcwx"]
+[ext_resource type="Script" path="res://scripts/levels_view_ui.gd" id="4_kxuuv"]
 [ext_resource type="Texture2D" uid="uid://53tb2kvubbsl" path="res://assets/button_states/level_cover_click.png" id="5_rnv3v"]
 [ext_resource type="Texture2D" uid="uid://g13exg2rd8fu" path="res://assets/level_covers/level_2_cover.png" id="5_w623u"]
 [ext_resource type="Texture2D" uid="uid://do3dxxsheewgf" path="res://assets/level_covers/level_3_cover.png" id="6_0d0qb"]
 [ext_resource type="PackedScene" uid="uid://8p8jdk1hlhmi" path="res://scenes/slime_ball.tscn" id="6_b41ph"]
 [ext_resource type="Texture2D" uid="uid://bvvq2fd0nvblw" path="res://assets/button_states/level_cover_hover.png" id="6_snrnw"]
+[ext_resource type="Texture2D" uid="uid://blwmlltuy0c1a" path="res://assets/svg/empty_stars_level_end.svg" id="7_7iqgf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggd0a"]
 bg_color = Color(0, 0, 0, 0.517647)
@@ -353,7 +355,7 @@ max_value = 1.0
 step = 0.001
 value = 1.0
 
-[node name="LevelsView" type="VBoxContainer" parent="CanvasLayer"]
+[node name="LevelsView" type="VBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("starRatingTextureRectLevel1", "starRatingTextureRectLevel2", "starRatingTextureRectLevel3")]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -366,6 +368,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
+script = ExtResource("4_kxuuv")
+starRatingTextureRectLevel1 = NodePath("VBoxContainer/Level1/StarRatingLevel1")
+starRatingTextureRectLevel2 = NodePath("VBoxContainer/Level2/StarRatingLevel2")
+starRatingTextureRectLevel3 = NodePath("VBoxContainer/Level3/StarRatingLevel3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/LevelsView"]
 layout_mode = 2
@@ -405,14 +411,14 @@ theme_override_fonts/font = ExtResource("1_521am")
 theme_override_font_sizes/font_size = 24
 text = "Level 1"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/LevelsView/VBoxContainer/Level1"]
+[node name="Cover" type="TextureRect" parent="CanvasLayer/LevelsView/VBoxContainer/Level1"]
 clip_contents = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = ExtResource("4_3rcwx")
 expand_mode = 3
 
-[node name="Level1Button" type="TextureButton" parent="CanvasLayer/LevelsView/VBoxContainer/Level1/TextureRect"]
+[node name="Level1Button" type="TextureButton" parent="CanvasLayer/LevelsView/VBoxContainer/Level1/Cover"]
 z_index = 5
 clip_contents = true
 custom_minimum_size = Vector2(128, 128)
@@ -423,6 +429,13 @@ size_flags_vertical = 3
 mouse_default_cursor_shape = 2
 texture_pressed = ExtResource("5_rnv3v")
 texture_hover = ExtResource("6_snrnw")
+
+[node name="StarRatingLevel1" type="TextureRect" parent="CanvasLayer/LevelsView/VBoxContainer/Level1"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("7_7iqgf")
+expand_mode = 5
 
 [node name="Level2" type="VBoxContainer" parent="CanvasLayer/LevelsView/VBoxContainer"]
 layout_mode = 2
@@ -454,6 +467,13 @@ mouse_default_cursor_shape = 2
 texture_pressed = ExtResource("5_rnv3v")
 texture_hover = ExtResource("6_snrnw")
 
+[node name="StarRatingLevel2" type="TextureRect" parent="CanvasLayer/LevelsView/VBoxContainer/Level2"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("7_7iqgf")
+expand_mode = 5
+
 [node name="Level3" type="VBoxContainer" parent="CanvasLayer/LevelsView/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 32
@@ -483,6 +503,13 @@ size_flags_vertical = 3
 mouse_default_cursor_shape = 2
 texture_pressed = ExtResource("5_rnv3v")
 texture_hover = ExtResource("6_snrnw")
+
+[node name="StarRatingLevel3" type="TextureRect" parent="CanvasLayer/LevelsView/VBoxContainer/Level3"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("7_7iqgf")
+expand_mode = 5
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(40, 31)
@@ -532,6 +559,6 @@ slime_type = 2
 [connection signal="value_changed" from="CanvasLayer/SettingsView/VBoxContainer/Music/MusicVolumeSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/SettingsView/VBoxContainer/SoundEffects/SoundEffectsVolumeSlider" to="." method="_on_sound_effects_slider_value_changed"]
 [connection signal="pressed" from="CanvasLayer/LevelsView/HBoxContainer/ReturnToStartMenuButton" to="." method="_on_return_to_start_menu_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/LevelsView/VBoxContainer/Level1/TextureRect/Level1Button" to="." method="_on_start_level_1_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LevelsView/VBoxContainer/Level1/Cover/Level1Button" to="." method="_on_start_level_1_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/LevelsView/VBoxContainer/Level2/TextureRect/Level2Button" to="." method="_on_start_level_2_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/LevelsView/VBoxContainer/Level3/TextureRect/Level3Button" to="." method="_on_start_level_3_button_pressed"]

@@ -34,6 +34,7 @@ func _on_player_won() -> void:
 	player.isLevelCompleted = true
 	
 	winMenuUI.update_stars_based_on_score(score, maxNumberOfStars)
+	winMenuUI.save_star_rating(score, maxNumberOfStars)
 	
 	if currentLevel == 3:
 		winMenuUI.hide_next_level_button()

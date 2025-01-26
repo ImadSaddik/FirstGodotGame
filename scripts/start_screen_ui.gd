@@ -6,8 +6,11 @@ extends Control
 @export var levelsView: VBoxContainer
 @export var startMenuView: VBoxContainer
 
+const FILE_PATH: String = "user://star_rating.save"
+
 var music_bus_index: int
 var sound_effects_bus_index: int
+
 
 func _ready() -> void:
 	music_bus_index = AudioServer.get_bus_index(music_bus_name)
@@ -16,6 +19,8 @@ func _ready() -> void:
 
 func _on_start_game_button_pressed() -> void:
 	startMenuView.hide()
+	
+	levelsView.update_star_rating_from_saved_data()
 	levelsView.show()
 
 
