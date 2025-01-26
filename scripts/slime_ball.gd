@@ -7,6 +7,10 @@ signal player_died
 @export var explosionAnimation: AnimationPlayer
 
 
+func explode_slime_ball() -> void:
+	explosionAnimation.play("explosion")
+
+
 func _on_player_died() -> void:
 	emit_signal("player_died")
 

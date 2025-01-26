@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkwvon0knpwl4"]
+
+[ext_resource type="Script" path="res://scripts/shield.gd" id="1_dyc2u"]
+[ext_resource type="Texture2D" uid="uid://db1nj1jc8hs0q" path="res://assets/shield_states/not_faded_shield.png" id="1_mqobx"]
+[ext_resource type="Texture2D" uid="uid://bu8gho2qqe5r4" path="res://assets/shield/shield_icon.png" id="3_a4p8u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6eaqm"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_306j4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_6u3ww"]
+resource_name = "show_shield_with_cooldown"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 3, 3.5, 4, 4.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.392157), Color(1, 1, 1, 1), Color(1, 1, 1, 0.392157), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5pwx6"]
+_data = {
+"RESET": SubResource("Animation_306j4"),
+"show_shield_with_cooldown": SubResource("Animation_6u3ww")
+}
+
+[node name="Shield" type="Node2D" node_paths=PackedStringArray("animationPlayer", "shieldDurationTimer", "shieldIcon")]
+script = ExtResource("1_dyc2u")
+animationPlayer = NodePath("AnimationPlayer")
+shieldDurationTimer = NodePath("ShieldDurationTimer")
+shieldIcon = NodePath("CanvasLayer/TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 30.0
+offset_bottom = 30.0
+texture = ExtResource("1_mqobx")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(15, 15)
+shape = SubResource("CircleShape2D_6eaqm")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5pwx6")
+}
+
+[node name="ShieldDurationTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -78.0
+offset_right = 78.0
+offset_bottom = -30.0
+grow_vertical = 0
+texture = ExtResource("3_a4p8u")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="timeout" from="ShieldDurationTimer" to="." method="_on_shield_duration_timer_timeout"]

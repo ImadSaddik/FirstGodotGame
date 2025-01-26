@@ -6,13 +6,18 @@ extends CharacterBody2D
 @export var sword: Node2D
 @export var deathSoundTimer: Timer
 @export var swordCooldownTimer: Timer
+@export var shieldCooldownTimer: Timer
 @export var swordCooldown: Node2D
+@export var shield: Node2D
+@export var playerCollisionShape: CollisionShape2D
 
 const SPEED: float = 130.0
 const JUMP_VELOCITY: float = -300.0
 const CLIMB_SPEED: float = 100.0
 const SWORD_X_OFFSET_IN_PIXELS: float = 5.5
 const SWORD_COOLDOWN_X_OFFSET_IN_PIXELS: float = 10
+const MAX_JUMPS_ALLOWED = 2
+const MAX_SHIELD_USAGE_ALLOWED = 1
 
 var isDead: bool = false
 var isOnPlatform: bool = false
@@ -23,6 +28,9 @@ var jumpsPerformed: int = 0
 var platformCollisionShape: CollisionShape2D = null
 var isGravityInverted: bool = false
 var canHitWithSword: bool = true
+var canUseShield: bool = true
+var shieldIsUsed: bool = false
+var shieldUsage: int = 0
 
 func _physics_process(delta: float) -> void:
 	if isDead or isLevelCompleted:
@@ -76,7 +84,7 @@ func handle_double_jump() -> void:
 		return
 	
 	handle_jump()
-	if jumpsPerformed > 1:
+	if jumpsPerformed >= MAX_JUMPS_ALLOWED:
 		canDoubleJump = false
 
 
@@ -91,6 +99,12 @@ func handle_actions() -> void:
 		canHitWithSword = false
 		swordCooldownTimer.start()
 		swordCooldown.play_sword_cooldown_animation()
+	
+	if Input.is_action_just_pressed("shield") and canUseShield and shieldUsage < MAX_SHIELD_USAGE_ALLOWED:
+		shieldUsage += 1
+		shieldIsUsed = true
+		canUseShield = false
+		shield.show_shield_with_cooldown()
 	
 	if Input.is_action_just_pressed("move_down") and isOnPlatform:
 		platformCollisionShape.disabled = true
@@ -151,3 +165,12 @@ func _on_death_sound_timer_timeout() -> void:
 
 func _on_sword_cooldown_timer_timeout() -> void:
 	canHitWithSword = true
+
+
+func _on_shield_cooldown_timer_timeout() -> void:
+	canUseShield = true
+
+
+func _on_shield_power_end() -> void:
+	shieldIsUsed = false
+	shieldCooldownTimer.start()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cs565u2u1h6la"]
+[gd_scene load_steps=31 format=3 uid="uid://cs565u2u1h6la"]
 
 [ext_resource type="Texture2D" uid="uid://bhumyp21hajes" path="res://assets/sprites/knight.png" id="1_eh0pk"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_qgvji"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://8646qdn4cmpo" path="res://assets/sounds/game_over.mp3" id="4_qpni2"]
 [ext_resource type="PackedScene" uid="uid://d2phwtovjgf20" path="res://scenes/sword.tscn" id="5_vh458"]
 [ext_resource type="PackedScene" uid="uid://dcty7fwdmuwt4" path="res://scenes/sword_cooldown.tscn" id="6_1yp4q"]
+[ext_resource type="PackedScene" uid="uid://bkwvon0knpwl4" path="res://scenes/shield.tscn" id="7_hn3we"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_addvw"]
 atlas = ExtResource("1_eh0pk")
@@ -175,7 +176,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_sfjnd"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerAnimatedSprite", "jumpSoundEffect", "deathSoundEffect", "sword", "deathSoundTimer", "swordCooldownTimer", "swordCooldown")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerAnimatedSprite", "jumpSoundEffect", "deathSoundEffect", "sword", "deathSoundTimer", "swordCooldownTimer", "shieldCooldownTimer", "swordCooldown", "shield", "playerCollisionShape")]
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_qgvji")
@@ -184,8 +185,11 @@ jumpSoundEffect = NodePath("JumpSound")
 deathSoundEffect = NodePath("DeathSound")
 sword = NodePath("Sword")
 deathSoundTimer = NodePath("DeathSoundTimer")
-swordCooldownTimer = NodePath("swordCooldownTimer")
+swordCooldownTimer = NodePath("SwordCooldownTimer")
+shieldCooldownTimer = NodePath("ShieldCooldownTimer")
 swordCooldown = NodePath("SwordCooldown")
+shield = NodePath("Shield")
+playerCollisionShape = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
@@ -209,16 +213,26 @@ bus = &"SoundEffects"
 [node name="Sword" parent="." instance=ExtResource("5_vh458")]
 position = Vector2(5, -5)
 
-[node name="DeathSoundTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
-[node name="swordCooldownTimer" type="Timer" parent="."]
-wait_time = 0.5
-
 [node name="SwordCooldown" parent="." instance=ExtResource("6_1yp4q")]
 position = Vector2(-10, -5)
 scale = Vector2(0.091199, 0.091199)
 
+[node name="Shield" parent="." instance=ExtResource("7_hn3we")]
+position = Vector2(-15, -24)
+
+[node name="DeathSoundTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="SwordCooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ShieldCooldownTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[connection signal="shield_power_end" from="Shield" to="." method="_on_shield_power_end"]
 [connection signal="timeout" from="DeathSoundTimer" to="." method="_on_death_sound_timer_timeout"]
-[connection signal="timeout" from="swordCooldownTimer" to="." method="_on_sword_cooldown_timer_timeout"]
+[connection signal="timeout" from="SwordCooldownTimer" to="." method="_on_sword_cooldown_timer_timeout"]
+[connection signal="timeout" from="ShieldCooldownTimer" to="." method="_on_shield_cooldown_timer_timeout"]
