@@ -6,11 +6,13 @@ extends CharacterBody2D
 @export var sword: Node2D
 @export var deathSoundTimer: Timer
 @export var swordCooldownTimer: Timer
+@export var swordCooldown: Node2D
 
 const SPEED: float = 130.0
 const JUMP_VELOCITY: float = -300.0
 const CLIMB_SPEED: float = 100.0
 const SWORD_X_OFFSET_IN_PIXELS: float = 5.5
+const SWORD_COOLDOWN_X_OFFSET_IN_PIXELS: float = 10
 
 var isDead: bool = false
 var isOnPlatform: bool = false
@@ -88,6 +90,7 @@ func handle_actions() -> void:
 		sword.swing_sword()
 		canHitWithSword = false
 		swordCooldownTimer.start()
+		swordCooldown.play_sword_cooldown_animation()
 	
 	if Input.is_action_just_pressed("move_down") and isOnPlatform:
 		platformCollisionShape.disabled = true
@@ -103,9 +106,11 @@ func flip_player_based_on_direction(direction: float) -> void:
 	if direction < 0:
 		playerAnimatedSprite.flip_h = true
 		sword.set_x_position(-SWORD_X_OFFSET_IN_PIXELS)
+		swordCooldown.position.x = SWORD_COOLDOWN_X_OFFSET_IN_PIXELS
 	elif direction > 0:
 		playerAnimatedSprite.flip_h = false
 		sword.set_x_position(SWORD_X_OFFSET_IN_PIXELS)
+		swordCooldown.position.x = -SWORD_COOLDOWN_X_OFFSET_IN_PIXELS
 
 
 func move_player_in_direction(direction: float) -> void:
