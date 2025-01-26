@@ -4,7 +4,8 @@ extends CharacterBody2D
 @export var jumpSoundEffect: AudioStreamPlayer2D
 @export var deathSoundEffect: AudioStreamPlayer2D
 @export var sword: Node2D
-@export var timer: Timer
+@export var deathSoundTimer: Timer
+@export var swordCooldownTimer: Timer
 
 const SPEED: float = 130.0
 const JUMP_VELOCITY: float = -300.0
@@ -19,6 +20,7 @@ var canDoubleJump: bool = true
 var jumpsPerformed: int = 0
 var platformCollisionShape: CollisionShape2D = null
 var isGravityInverted: bool = false
+var canHitWithSword: bool = true
 
 func _physics_process(delta: float) -> void:
 	if isDead or isLevelCompleted:
@@ -40,7 +42,7 @@ func _physics_process(delta: float) -> void:
 	
 
 func play_death_sound() -> void:
-	timer.start()
+	deathSoundTimer.start()
 
 
 func reset_double_jumps() -> void:
@@ -82,8 +84,10 @@ func handle_ladder_climbing() -> void:
 
 
 func handle_actions() -> void:
-	if Input.is_action_just_pressed("hit"):
+	if Input.is_action_just_pressed("hit") and canHitWithSword:
 		sword.swing_sword()
+		canHitWithSword = false
+		swordCooldownTimer.start()
 	
 	if Input.is_action_just_pressed("move_down") and isOnPlatform:
 		platformCollisionShape.disabled = true
@@ -126,10 +130,6 @@ func invert_gravity() -> void:
 	scale.y = -1 if isGravityInverted else 1
 
 
-func _on_timer_timeout() -> void:
-	deathSoundEffect.play()
-
-
 func _on_player_on_platform(collisionShape: CollisionShape2D) -> void:
 	isOnPlatform = true
 	platformCollisionShape = collisionShape
@@ -138,3 +138,11 @@ func _on_player_on_platform(collisionShape: CollisionShape2D) -> void:
 func _on_player_exited_platform(_collisionShape: CollisionShape2D) -> void:
 	isOnPlatform = false
 	platformCollisionShape = null
+
+
+func _on_death_sound_timer_timeout() -> void:
+	deathSoundEffect.play()
+
+
+func _on_sword_cooldown_timer_timeout() -> void:
+	canHitWithSword = true

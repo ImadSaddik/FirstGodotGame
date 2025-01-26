@@ -174,7 +174,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_sfjnd"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerAnimatedSprite", "jumpSoundEffect", "deathSoundEffect", "sword", "timer")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerAnimatedSprite", "jumpSoundEffect", "deathSoundEffect", "sword", "deathSoundTimer", "swordCooldownTimer")]
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_qgvji")
@@ -182,7 +182,8 @@ playerAnimatedSprite = NodePath("AnimatedSprite2D")
 jumpSoundEffect = NodePath("JumpSound")
 deathSoundEffect = NodePath("DeathSound")
 sword = NodePath("Sword")
-timer = NodePath("Timer")
+deathSoundTimer = NodePath("DeathSoundTimer")
+swordCooldownTimer = NodePath("swordCooldownTimer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
@@ -203,11 +204,14 @@ stream = ExtResource("4_qpni2")
 volume_db = 5.0
 bus = &"SoundEffects"
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
 [node name="Sword" parent="." instance=ExtResource("5_vh458")]
 position = Vector2(5, -5)
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="DeathSoundTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="swordCooldownTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DeathSoundTimer" to="." method="_on_death_sound_timer_timeout"]
+[connection signal="timeout" from="swordCooldownTimer" to="." method="_on_sword_cooldown_timer_timeout"]
