@@ -235,7 +235,7 @@ size = Vector2(108.5, 6)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o3n2h"]
 
-[node name="Level 2" type="Node2D"]
+[node name="Level 3" type="Node2D"]
 position = Vector2(0, 1)
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("scoreLabel", "inGameUI", "pauseMenuUI", "winMenuUI", "gameOverMenuUI", "player")]
@@ -440,7 +440,7 @@ autowrap_mode = 2
 [node name="GameOverMenuUI" parent="UI" instance=ExtResource("13_pb81f")]
 
 [node name="WinMenuUI" parent="UI" instance=ExtResource("14_xdc1u")]
-currentLevel = 2
+currentLevel = 3
 
 [node name="KillZones" type="Node" parent="."]
 
