@@ -25,6 +25,7 @@ const OFFSET_SLIME_BALL_FROM_GROUND: float = 10.0
 
 var movementDirection = 1
 var canShoot: bool = true
+var canMove: bool = true
 
 
 func _ready() -> void:
@@ -54,7 +55,8 @@ func move_slime(delta: float) -> void:
 		movementDirection = -1 if isUpsideDown else 1
 		animatedSprite.flip_h = false
 	
-	position.x += movementDirection * SLIME_SPEED * delta
+	if canMove:
+		position.x += movementDirection * SLIME_SPEED * delta
 
 
 func shoot_ball() -> void:
@@ -63,7 +65,10 @@ func shoot_ball() -> void:
 	
 	var distanceToPlayer = position.distance_to(player.position)
 	if distanceToPlayer <= detectionRadius:
+		canMove = false
 		shoot_at_player()
+	else:
+		canMove = true
 	
 	
 func shoot_at_player() -> void:
