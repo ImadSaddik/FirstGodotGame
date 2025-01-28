@@ -10,6 +10,8 @@ extends CharacterBody2D
 @export var swordCooldown: Node2D
 @export var shield: Node2D
 @export var playerCollisionShape: CollisionShape2D
+@export var walkParticles: GPUParticles2D
+@export var jumpParticles: GPUParticles2D
 
 const SPEED: float = 130.0
 const JUMP_VELOCITY: float = -300.0
@@ -65,6 +67,20 @@ func handle_jump() -> void:
 		jumpsPerformed += 1
 		velocity.y = -JUMP_VELOCITY if isGravityInverted else JUMP_VELOCITY
 		jumpSoundEffect.play()
+		show_jump_particles()
+
+
+func show_jump_particles():
+	if jumpsPerformed < MAX_JUMPS_ALLOWED:
+		jumpParticles.emitting = true
+	else:
+		var newParticles = jumpParticles.duplicate()
+		add_child(newParticles)
+		newParticles.global_position = global_position
+		newParticles.emitting = true
+		
+		await get_tree().create_timer(newParticles.lifetime).timeout
+		newParticles.queue_free()
 
 
 func is_in_air() -> bool:
@@ -114,6 +130,7 @@ func handle_actions() -> void:
 	flip_player_based_on_direction(direction)
 	move_player_in_direction(direction)
 	play_animations(direction)
+	show_walk_particles(direction)
 
 
 func flip_player_based_on_direction(direction: float) -> void:
@@ -142,6 +159,13 @@ func play_animations(direction: float) -> void:
 			playerAnimatedSprite.play("run")
 	else:
 		playerAnimatedSprite.play("jump")
+
+
+func show_walk_particles(direction: float) -> void:
+	if direction != 0 and not is_in_air():
+		walkParticles.emitting = true
+	else:
+		walkParticles.emitting = false
 
 
 func invert_gravity() -> void:
