@@ -1,5 +1,6 @@
 extends Node2D
 
+@warning_ignore("unused_signal")
 signal shield_power_end
 
 @export var animationPlayer: AnimationPlayer
