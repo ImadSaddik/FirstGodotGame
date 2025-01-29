@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://b7e188lrybryb"]
+[gd_scene load_steps=24 format=3 uid="uid://b7e188lrybryb"]
 
 [ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="1_521am"]
 [ext_resource type="Script" path="res://scripts/start_screen_ui.gd" id="1_elvmy"]
 [ext_resource type="Texture2D" uid="uid://byhorooeabb5o" path="res://assets/sprites/world_tileset.png" id="2_hqqql"]
 [ext_resource type="PackedScene" uid="uid://dhdcm8lltqcrp" path="res://scenes/slime.tscn" id="3_4saye"]
-[ext_resource type="Texture2D" uid="uid://ckcq783q0yla6" path="res://assets/svg/return_button.svg" id="3_n3w1f"]
+[ext_resource type="Texture2D" uid="uid://dgwqha31uo4pa" path="res://assets/button_states/bacl_button_rest.png" id="3_tkdfn"]
+[ext_resource type="Texture2D" uid="uid://da8mwrv52mer" path="res://assets/button_states/back_button_hover.png" id="4_0r5q2"]
 [ext_resource type="Texture2D" uid="uid://oetnecl5inqw" path="res://assets/level_covers/level_1_cover.png" id="4_3rcwx"]
 [ext_resource type="Script" path="res://scripts/levels_view_ui.gd" id="4_kxuuv"]
 [ext_resource type="Texture2D" uid="uid://53tb2kvubbsl" path="res://assets/button_states/level_cover_click.png" id="5_rnv3v"]
@@ -311,9 +312,14 @@ size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 32
 
 [node name="ReturnToStartMenuButton" type="TextureButton" parent="CanvasLayer/SettingsView/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("3_n3w1f")
+texture_normal = ExtResource("3_tkdfn")
+texture_hover = ExtResource("4_0r5q2")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsView/HBoxContainer"]
 layout_mode = 2
@@ -390,9 +396,14 @@ size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 32
 
 [node name="ReturnToStartMenuButton" type="TextureButton" parent="CanvasLayer/LevelsView/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("3_n3w1f")
+texture_normal = ExtResource("3_tkdfn")
+texture_hover = ExtResource("4_0r5q2")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Label" type="Label" parent="CanvasLayer/LevelsView/HBoxContainer"]
 layout_mode = 2

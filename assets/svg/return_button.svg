@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="64"
-   height="64"
-   viewBox="0 0 16.933333 16.933333"
+   width="256"
+   height="256"
+   viewBox="0 0 67.733332 67.733332"
    version="1.1"
    id="svg1"
    inkscape:version="1.4 (1:1.4+202410161351+e7c3feb100)"
-   sodipodi:docname="pause_button.svg"
+   sodipodi:docname="return_button.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="7.2699416"
-     inkscape:cx="34.319395"
-     inkscape:cy="42.435004"
+     inkscape:zoom="0.9087427"
+     inkscape:cx="496.8403"
+     inkscape:cy="255.848"
      inkscape:window-width="1920"
      inkscape:window-height="1131"
      inkscape:window-x="0"
@@ -76,27 +76,58 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <circle
-       style="fill:#ffffff;stroke:none;stroke-width:1.00012;stroke-linecap:round;stroke-linejoin:round"
-       id="path1"
-       cx="8.4666653"
-       cy="8.4666653"
-       r="8.4666662" />
     <g
-       id="g7"
-       transform="translate(1.3201073,0.16879937)">
+       id="g6"
+       inkscape:export-filename="bacl_button_rest.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <circle
+         style="fill:#ffffff;stroke:none;stroke-width:4.00048;stroke-linecap:round;stroke-linejoin:round"
+         id="path1"
+         cx="33.866665"
+         cy="33.866665"
+         r="33.866665" />
       <path
-         style="fill:#ffffff;stroke:#000000;stroke-width:1.00012;stroke-linecap:round;stroke-linejoin:round"
-         d="m 12.464995,8.2978658 c -2.5657867,0 -5.1315742,0 -7.6973616,0"
-         id="path2"
-         inkscape:path-effect="#path-effect2"
-         inkscape:original-d="m 12.464995,8.2978658 c -2.5657867,0 -5.1315742,0 -7.6973616,0"
-         sodipodi:nodetypes="cc" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1.00012;stroke-linecap:round;stroke-linejoin:round"
-         d="m 5.3720463,4.7539198 -3.543946,3.543946 3.543946,3.5439462"
+         style="fill:none;stroke:#000000;stroke-width:4.66238;stroke-linecap:round;stroke-linejoin:round"
+         d="M 42.12723,17.345436 25.606002,33.866665 42.12723,50.387894"
          id="path3"
          sodipodi:nodetypes="ccc" />
     </g>
+    <circle
+       style="fill:#cccccc;stroke:none;stroke-width:4.00048;stroke-linecap:round;stroke-linejoin:round"
+       id="circle1"
+       cx="160.34377"
+       cy="33.866665"
+       r="33.866665"
+       inkscape:export-filename="back_button_hover.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4.66238;stroke-linecap:round;stroke-linejoin:round"
+       d="M 168.60433,17.345436 152.0831,33.866665 168.60433,50.387894"
+       id="path2"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:32.4136px;line-height:0;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, ';text-align:start;letter-spacing:-0.97064px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke:none;stroke-width:1.94127;stroke-linecap:round;stroke-linejoin:round"
+       x="-9.9346704"
+       y="113.75867"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="stroke-width:1.94127;fill:#000000"
+         x="-9.9346704"
+         y="113.75867">Default</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:32.4136px;line-height:0;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, ';text-align:start;letter-spacing:-0.97064px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke:none;stroke-width:1.94127;stroke-linecap:round;stroke-linejoin:round"
+       x="123.96008"
+       y="113.75867"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         style="fill:#000000;stroke-width:1.94127"
+         x="123.96008"
+         y="113.75867">Hover</tspan></text>
   </g>
 </svg>
