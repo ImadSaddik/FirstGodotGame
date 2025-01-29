@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/start_screen_ui.gd" id="1_elvmy"]
 [ext_resource type="Texture2D" uid="uid://byhorooeabb5o" path="res://assets/sprites/world_tileset.png" id="2_hqqql"]
 [ext_resource type="PackedScene" uid="uid://dhdcm8lltqcrp" path="res://scenes/slime.tscn" id="3_4saye"]
-[ext_resource type="Texture2D" uid="uid://dgwqha31uo4pa" path="res://assets/button_states/bacl_button_rest.png" id="3_tkdfn"]
+[ext_resource type="Texture2D" uid="uid://dgwqha31uo4pa" path="res://assets/button_states/back_button_rest.png" id="3_tkdfn"]
 [ext_resource type="Texture2D" uid="uid://da8mwrv52mer" path="res://assets/button_states/back_button_hover.png" id="4_0r5q2"]
 [ext_resource type="Texture2D" uid="uid://oetnecl5inqw" path="res://assets/level_covers/level_1_cover.png" id="4_3rcwx"]
 [ext_resource type="Script" path="res://scripts/levels_view_ui.gd" id="4_kxuuv"]

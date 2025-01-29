@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="5.140625"
-     inkscape:cx="14.297872"
-     inkscape:cy="47.56231"
+     inkscape:zoom="3.6349708"
+     inkscape:cx="63.824447"
+     inkscape:cy="50.481836"
      inkscape:window-width="1920"
      inkscape:window-height="1131"
      inkscape:window-x="0"
@@ -38,35 +38,61 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <circle
+       style="fill:#ffffff;stroke:none;stroke-width:1.00012;stroke-linecap:round;stroke-linejoin:round"
+       id="path1"
+       cx="8.4666653"
+       cy="8.4666653"
+       r="8.4666662"
+       inkscape:export-filename="../button_states/pause_button_rest.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <g
-       id="g1"
-       transform="scale(1.9999998)"
-       style="stroke-width:0.5">
-      <circle
+       id="g2"
+       transform="matrix(1.9999998,0,0,1.9999998,0.96947184,0)"
+       style="stroke-width:0.5;fill:#000000">
+      <rect
          style="fill:#000000;stroke:none;stroke-width:0.50006;stroke-linecap:round;stroke-linejoin:round"
-         id="path1"
-         cx="4.2333331"
-         cy="4.2333331"
-         r="4.2333336" />
-      <g
-         id="g2"
-         transform="translate(0.48473597)"
-         style="stroke-width:0.5">
-        <rect
-           style="fill:#ffffff;stroke:none;stroke-width:0.50006;stroke-linecap:round;stroke-linejoin:round"
-           id="rect1"
-           width="0.63689756"
-           height="3.2390792"
-           x="2.5475903"
-           y="2.6137936" />
-        <rect
-           style="fill:#ffffff;stroke:none;stroke-width:0.50006;stroke-linecap:round;stroke-linejoin:round"
-           id="rect2"
-           width="0.63689756"
-           height="3.2390792"
-           x="4.3127065"
-           y="2.6137936" />
-      </g>
+         id="rect1"
+         width="0.63689756"
+         height="3.2390792"
+         x="2.5475903"
+         y="2.6137936" />
+      <rect
+         style="fill:#000000;stroke:none;stroke-width:0.50006;stroke-linecap:round;stroke-linejoin:round"
+         id="rect2"
+         width="0.63689756"
+         height="3.2390792"
+         x="4.3127065"
+         y="2.6137936" />
+    </g>
+    <circle
+       style="fill:#cccccc;stroke:none;stroke-width:1.00012;stroke-linecap:round;stroke-linejoin:round"
+       id="circle1"
+       cx="35.590881"
+       cy="8.4666653"
+       r="8.4666662"
+       inkscape:export-filename="../button_states/pause_button_hover.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="g4"
+       transform="matrix(1.9999998,0,0,1.9999998,28.093686,0)"
+       style="fill:#000000;stroke-width:0.5">
+      <rect
+         style="fill:#000000;stroke:none;stroke-width:0.50006;stroke-linecap:round;stroke-linejoin:round"
+         id="rect3"
+         width="0.63689756"
+         height="3.2390792"
+         x="2.5475903"
+         y="2.6137936" />
+      <rect
+         style="fill:#000000;stroke:none;stroke-width:0.50006;stroke-linecap:round;stroke-linejoin:round"
+         id="rect4"
+         width="0.63689756"
+         height="3.2390792"
+         x="4.3127065"
+         y="2.6137936" />
     </g>
   </g>
 </svg>

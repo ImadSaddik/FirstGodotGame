@@ -101,14 +101,10 @@ one_shot = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = -78.0
-offset_right = 78.0
-offset_bottom = -30.0
-grow_vertical = 0
+offset_left = 200.0
+offset_top = 20.0
+offset_right = 264.0
+offset_bottom = 84.0
 texture = ExtResource("3_a4p8u")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
