@@ -140,8 +140,6 @@ func stop_shooting_balls() -> void:
 
 func _on_shoot_ball_timer_timeout() -> void:
 	canShoot = true
-	var time = Time.get_datetime_string_from_system()
-	print(time + " Can Shoot balls again ")
 
 
 func remove_from_game() -> void:
