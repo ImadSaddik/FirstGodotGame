@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b7e188lrybryb"]
+[gd_scene load_steps=25 format=3 uid="uid://b7e188lrybryb"]
 
 [ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="1_521am"]
 [ext_resource type="Script" path="res://scripts/start_screen_ui.gd" id="1_elvmy"]
@@ -195,6 +195,9 @@ bg_color = Color(0.601223, 0.601223, 0.601223, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75i84"]
 bg_color = Color(1, 1, 1, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vpmxp"]
+bg_color = Color(0, 0, 0, 0.588235)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efcgd"]
 bg_color = Color(0.125911, 0.125911, 0.125911, 1)
 
@@ -312,7 +315,7 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 0
+theme_override_constants/separation = 128
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SettingsView"]
 layout_mode = 2
@@ -340,22 +343,41 @@ theme_override_font_sizes/font_size = 32
 text = "Settings"
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SettingsView"]
+[node name="Panel" type="Panel" parent="CanvasLayer/SettingsView"]
+clip_contents = true
+custom_minimum_size = Vector2(500, 200)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_vpmxp")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/SettingsView/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SettingsView/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 32
 
-[node name="Music" type="VBoxContainer" parent="CanvasLayer/SettingsView/VBoxContainer"]
+[node name="Music" type="VBoxContainer" parent="CanvasLayer/SettingsView/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/SettingsView/VBoxContainer/Music"]
+[node name="Label" type="Label" parent="CanvasLayer/SettingsView/Panel/MarginContainer/VBoxContainer/Music"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_521am")
 theme_override_font_sizes/font_size = 24
 text = "Music Volume"
 
-[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/SettingsView/VBoxContainer/Music"]
+[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/SettingsView/Panel/MarginContainer/VBoxContainer/Music"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 3
@@ -363,16 +385,17 @@ max_value = 1.0
 step = 0.001
 value = 1.0
 
-[node name="SoundEffects" type="VBoxContainer" parent="CanvasLayer/SettingsView/VBoxContainer"]
+[node name="SoundEffects" type="VBoxContainer" parent="CanvasLayer/SettingsView/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Label2" type="Label" parent="CanvasLayer/SettingsView/VBoxContainer/SoundEffects"]
+[node name="Label2" type="Label" parent="CanvasLayer/SettingsView/Panel/MarginContainer/VBoxContainer/SoundEffects"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_521am")
 theme_override_font_sizes/font_size = 24
 text = "Sound Effects Volume"
 
-[node name="SoundEffectsVolumeSlider" type="HSlider" parent="CanvasLayer/SettingsView/VBoxContainer/SoundEffects"]
+[node name="SoundEffectsVolumeSlider" type="HSlider" parent="CanvasLayer/SettingsView/Panel/MarginContainer/VBoxContainer/SoundEffects"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 3
@@ -638,8 +661,8 @@ slimeBallScene = ExtResource("6_b41ph")
 [connection signal="pressed" from="CanvasLayer/startMenuView/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/startMenuView/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/SettingsView/HBoxContainer/ReturnToStartMenuButton" to="." method="_on_return_to_start_menu_button_pressed"]
-[connection signal="value_changed" from="CanvasLayer/SettingsView/VBoxContainer/Music/MusicVolumeSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="CanvasLayer/SettingsView/VBoxContainer/SoundEffects/SoundEffectsVolumeSlider" to="." method="_on_sound_effects_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsView/Panel/MarginContainer/VBoxContainer/Music/MusicVolumeSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsView/Panel/MarginContainer/VBoxContainer/SoundEffects/SoundEffectsVolumeSlider" to="." method="_on_sound_effects_slider_value_changed"]
 [connection signal="pressed" from="CanvasLayer/LevelsView/HBoxContainer/ReturnToStartMenuButton" to="." method="_on_return_to_start_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/LevelsView/VBoxContainer/Level1/Content/Cover/Level1Button" to="." method="_on_start_level_1_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/LevelsView/VBoxContainer/Level2/Content/TextureRect/Level2Button" to="." method="_on_start_level_2_button_pressed"]
