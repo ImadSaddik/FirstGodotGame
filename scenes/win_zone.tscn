@@ -14,6 +14,7 @@ one_shot = true
 
 [node name="LevelWonSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_4k7ta")
+bus = &"SoundEffects"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
