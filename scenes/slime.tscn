@@ -299,7 +299,7 @@ libraries = {
 
 [node name="ShootBallTimer" type="Timer" parent="."]
 wait_time = 3.0
-autostart = true
+one_shot = true
 
 [node name="slapSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_rnwq4")
@@ -307,6 +307,7 @@ bus = &"SoundEffects"
 
 [node name="ExplosionTimer" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
 
 [connection signal="player_died" from="KillZone" to="." method="_on_player_died"]
 [connection signal="timeout" from="ShootBallTimer" to="." method="_on_shoot_ball_timer_timeout"]
