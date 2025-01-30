@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkwvon0knpwl4"]
+[gd_scene load_steps=10 format=3 uid="uid://bkwvon0knpwl4"]
 
 [ext_resource type="Script" path="res://scripts/shield.gd" id="1_dyc2u"]
 [ext_resource type="Texture2D" uid="uid://db1nj1jc8hs0q" path="res://assets/shield_states/not_faded_shield.png" id="1_mqobx"]
 [ext_resource type="Texture2D" uid="uid://bu8gho2qqe5r4" path="res://assets/shield/shield_icon.png" id="3_a4p8u"]
+[ext_resource type="FontFile" uid="uid://dac2hu4hiieru" path="res://assets/fonts/PixelOperator8.ttf" id="4_y6ofo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6eaqm"]
 radius = 16.0
@@ -68,11 +69,17 @@ _data = {
 "show_shield_with_cooldown": SubResource("Animation_6u3ww")
 }
 
-[node name="Shield" type="Node2D" node_paths=PackedStringArray("animationPlayer", "shieldDurationTimer", "shieldIcon")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2q4iy"]
+bg_color = Color(0, 0, 0, 0.588235)
+
+[node name="Shield" type="Node2D" node_paths=PackedStringArray("animationPlayer", "shieldDurationTimer", "shieldIcon", "shieldTooltip")]
 script = ExtResource("1_dyc2u")
 animationPlayer = NodePath("AnimationPlayer")
 shieldDurationTimer = NodePath("ShieldDurationTimer")
-shieldIcon = NodePath("CanvasLayer/TextureRect")
+shieldIcon = NodePath("CanvasLayer/ShieldImage")
+shieldTooltip = NodePath("CanvasLayer/ShieldImage/ShieldTooltip")
+metadata/_edit_vertical_guides_ = [232.0]
+metadata/_edit_horizontal_guides_ = [104.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -100,12 +107,45 @@ one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="ShieldImage" type="TextureRect" parent="CanvasLayer"]
 offset_left = 200.0
 offset_top = 20.0
 offset_right = 264.0
 offset_bottom = 84.0
 texture = ExtResource("3_a4p8u")
+expand_mode = 1
+
+[node name="ShieldTooltip" type="Panel" parent="CanvasLayer/ShieldImage"]
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 84.0
+offset_right = 394.0
+offset_bottom = 189.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2q4iy")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShieldImage/ShieldTooltip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="CanvasLayer/ShieldImage/ShieldTooltip/MarginContainer"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+theme_override_constants/line_spacing = 5
+theme_override_fonts/font = ExtResource("4_y6ofo")
+theme_override_font_sizes/font_size = 16
+text = "Press Shift to use the shield to protect yourself from enemies. This ability can be used only once"
+autowrap_mode = 3
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
 [connection signal="timeout" from="ShieldDurationTimer" to="." method="_on_shield_duration_timer_timeout"]
+[connection signal="mouse_entered" from="CanvasLayer/ShieldImage" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/ShieldImage" to="." method="_on_mouse_exited"]
