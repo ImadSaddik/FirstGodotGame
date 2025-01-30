@@ -446,6 +446,7 @@ currentLevel = 3
 
 [node name="KillZone" parent="KillZones" instance=ExtResource("15_p1reu")]
 position = Vector2(201, 473)
+isWorldKillZone = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZones/KillZone"]
 shape = SubResource("WorldBoundaryShape2D_o3n2h")
@@ -453,6 +454,7 @@ shape = SubResource("WorldBoundaryShape2D_o3n2h")
 [node name="KillZone2" parent="KillZones" instance=ExtResource("15_p1reu")]
 position = Vector2(430, -1025)
 rotation = -3.14159
+isWorldKillZone = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZones/KillZone2"]
 shape = SubResource("WorldBoundaryShape2D_o3n2h")
