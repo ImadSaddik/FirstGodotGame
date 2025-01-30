@@ -5,6 +5,7 @@ extends Control
 @export var settingsView: VBoxContainer
 @export var levelsView: VBoxContainer
 @export var startMenuView: VBoxContainer
+@export var controlsView: VBoxContainer
 
 const FILE_PATH: String = "user://star_rating.save"
 
@@ -29,6 +30,11 @@ func _on_settings_button_pressed() -> void:
 	settingsView.show()
 
 
+func _on_controls_button_pressed() -> void:
+	startMenuView.hide()
+	controlsView.show()
+
+
 func _on_exit_game_button_pressed() -> void:
 	get_tree().quit()
 
@@ -37,6 +43,7 @@ func _on_return_to_start_menu_button_pressed() -> void:
 	startMenuView.show()
 	settingsView.hide()
 	levelsView.hide()
+	controlsView.hide()
 
 
 func _on_music_slider_value_changed(value: float) -> void:
