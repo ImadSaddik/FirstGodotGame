@@ -78,7 +78,8 @@ func shoot_at_player() -> void:
 		return
 	
 	canShoot = false
-	shootBallTimer.start()
+	var randomCooldown = randf_range(1, 3)
+	shootBallTimer.start(randomCooldown)
 	
 	var slimeBall = spawn_slime_ball()
 	var velocity = calculate_projectile_velocity(player.position)
