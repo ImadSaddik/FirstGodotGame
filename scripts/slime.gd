@@ -24,11 +24,13 @@ const PROJECTILE_SHOT_ANGLE: float = 45.0
 const OFFSET_SLIME_BALL_FROM_GROUND: float = 10.0
 
 var movementDirection = 1
+var gravityDirection = 1
 var canShoot: bool = true
 var canMove: bool = true
 
 
 func _ready() -> void:
+	gravityDirection = -1 if isUpsideDown else 1
 	play_idle_animation()
 
 
@@ -80,7 +82,7 @@ func shoot_at_player() -> void:
 	
 	var slimeBall = spawn_slime_ball()
 	var velocity = calculate_projectile_velocity(player.position)
-	slimeBall.linear_velocity = velocity
+	slimeBall.linear_velocity = velocity 
 
 
 func calculate_projectile_velocity(targetPosition: Vector2) -> Vector2:
@@ -94,9 +96,11 @@ func calculate_projectile_velocity(targetPosition: Vector2) -> Vector2:
 	# Calculate required vertical velocity considering height difference
 	# Read this brilliant openstax section for more details: https://openstax.org/books/university-physics-volume-1/pages/4-3-projectile-motion
 	# The formula used here is derived from the kinematic equation: y = y0 + v0y*t + 0.5*a*t^2
-	# Solve for v0y, you get: v0y = (y - y0 + 0.5*a*t^2) / t
+	# Solve for v0y, you get: 
+	# - For normal gravity: v0y = (y - y0 + 0.5*a*t^2) / t
+	# - For inverted gravity: v0y = (y - y0 - 0.5*a*t^2) / t
 	var heightDifference = targetPosition.y - position.y
-	var initialVelocityY = (-heightDifference + 0.5 * GRAVITY * timeToTarget * timeToTarget) / timeToTarget
+	var initialVelocityY = (-heightDifference + (0.5 * GRAVITY * gravityDirection) * timeToTarget**2) / timeToTarget
 	
 	# If the player is on the left side of the slime, shoot the ball to the left
 	if targetPosition.x < position.x:
@@ -106,25 +110,27 @@ func calculate_projectile_velocity(targetPosition: Vector2) -> Vector2:
 
 
 func calculate_projectile_speed(angle: float, distanceToPlayer: float) -> float:
-	var numerator = distanceToPlayer * GRAVITY
-	var denominator = sin(2*angle)
+	var numerator = distanceToPlayer * abs(GRAVITY)
+	var denominator = sin(2 * abs(angle))
 	var projectileSpeed = sqrt(float(numerator) / denominator)
 	return projectileSpeed
 
 
 func spawn_slime_ball() -> RigidBody2D:
 	var slimeBall = slimeBallScene.instantiate()
+	
 	get_parent().add_child(slimeBall)
+	slimeBall.set_gravity_direction(gravityDirection)
 	slimeBall.position = position
-	slimeBall.position.y -= OFFSET_SLIME_BALL_FROM_GROUND
+	slimeBall.position.y -= gravityDirection * OFFSET_SLIME_BALL_FROM_GROUND
 	slimeBall.connect("player_died", _on_player_died)
 	return slimeBall
 
 
 func _on_player_died() -> void:
 	emit_signal("player_died")
-	
-	
+
+
 func play_explosion_animation() -> void:
 	animationPlayer.play("explode")
 
