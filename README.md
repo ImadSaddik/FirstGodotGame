@@ -57,48 +57,45 @@ I have created many flavours of the cute slime monster, ice, hell, and regular.
 ## Slime balls
 
 Slimes can shoot slime balls on the player.
-<video controls src="/videos/slime_ball.mp4" title="Slime ball"></video>
+https://github.com/user-attachments/assets/c238c0a1-97d3-472d-bd16-5834fe8d3e98
 
 ## Jumping
 
 I have allowed the player to double jump instead of just performing one single jump. I have also added a jumping effect that plays whenever the player jumps.
-[VIDEO]
+https://github.com/user-attachments/assets/84a4966a-8026-44ef-8552-fa79b873fe57
 
 ## Sword
 
 Since I have given slimes a weapon, I thought why not give the player a sword.
-[VIDEO]
+https://github.com/user-attachments/assets/b5109be3-e547-4448-87ab-f7146e20423a
 
 When a slime is hit by the sword it explodes
-[VIDEO]
-<video controls src="slime_explosion.mp4" title="Title"></video>
+https://github.com/user-attachments/assets/598fbd53-f3f9-419a-9d17-54990b5feb72
 
 ## Shield
 
 This is a special ability that the player can use, it allows them to be safe for 5 seconds. Since this ability is very powerful, I decided to make it usable only once.
-[VIDEO]
+https://github.com/user-attachments/assets/e2280781-cc25-4332-a630-508d49507037
 
 ## Inverted gravity
 
 In the third level, I decided to invert the gravity at some point.
-<video controls src="inverted_gravity.mp4" title="Title"></video>
+https://github.com/user-attachments/assets/4c9aded9-8748-4030-951b-4851f72c9396
 
 ## Ladder climbing
 
 In the presence of a ladder, the player can use up and down arrow keys to interact with the ladder.
-
-<video controls src="ladder_climbing.mp4" title="Title"></video>
+https://github.com/user-attachments/assets/15dc3cd3-153c-40cb-b6da-5f0cf17603f4
 
 ## Jump off a platform
 
 The player can use the down arrow key to jump off a platform quickly.
-
-<video controls src="jump_off_platform.mp4" title="Title"></video>
+https://github.com/user-attachments/assets/6b22db68-0079-4287-a689-30a6fc8fd495
 
 ## Walking effect
 
 I have added an effect when the player moves.
-<video controls src="walking_effect.mp4" title="Title"></video>
+https://github.com/user-attachments/assets/91db87d8-6e35-4985-9dba-d8b484dafa12
 
 ## Saving the player's progress
 
