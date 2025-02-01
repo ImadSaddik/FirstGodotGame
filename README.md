@@ -57,7 +57,7 @@ I have created many flavours of the cute slime monster, ice, hell, and regular.
 ## Slime balls
 
 Slimes can shoot slime balls on the player.
-https://github.com/user-attachments/assets/e047d817-c3ef-485b-a5d5-029415b5dbb1
+https://github.com/user-attachments/assets/d1792ee6-c556-446c-93a0-415d86859565
 
 ## Jumping
 
